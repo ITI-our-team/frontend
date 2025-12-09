@@ -1,0 +1,26 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-primary: rgb(22, 19, 16); /* Header Footer text */
+  --color-secondary: #90451d; /* text-buttons */
+  --color-btn: #e6dac9; /* buttons */
+  --color-btn-hover: #deccb3; /* buttons-background-hover */
+  --color-soft: #a4b5c4; /* Cards */
+  --color-bg: #f6f3ee; /* Background */
+  --color-bg-hover:#e8dfd0; /* background hover */
+  --color-gold: #a68868; /* important-icons */
+  --color-text:#e4dac6d4;
+  --color-paragraph:#9b907f;
+  
+  --font-size-big-test: 3rem;   /* 1rem = 16px*/
+  --font-size-text: 1.2rem;
+  --font-size-smtext: 0.875rem;
+  --font-size-btns: 1.125rem;
+  --line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 300vh;
+}

@@ -1,0 +1,106 @@
+.hero-section {
+    height: 100vh;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/wedding.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment:inherit;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+    padding: 2rem;
+    margin-left: 5%;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.hero-content.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hero-content h2 {
+    font-size: var(--font-size-big-test);
+    margin-bottom: 1rem;
+    text-shadow: -9px 5px 5px rgba(0, 0, 0, 0.5);
+    color: var(--color-text);
+    font-family: serif;
+}
+
+.hero-content span {
+    text-shadow: 0px 0px 2px #ffffff;
+    animation: glow 1.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    50% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: var(--line-height);
+    color: var(--color-paragraph);
+}
+
+.hero-content button {
+    position: relative;
+    overflow: hidden;
+    font-size: 1.125rem;
+    padding: 2px 50px;
+    border: none;
+    border-radius: 6px;
+    background-color: #bd86543d;
+    color: #e4dac6d4;
+    font-family: serif;
+    cursor: pointer;
+    box-shadow: -2px 2px 4px 0px #7c7b7b;
+}
+
+.hero-content button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    transform: skewX(-20deg);
+    animation: shine 2s infinite;
+}
+
+.hero-content button:hover {
+    background-color: #cf9c6c53;
+}
+
+@keyframes shine {
+    0% {
+        left: -75%;
+    }
+
+    50% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
+}
