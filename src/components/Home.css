@@ -1,0 +1,92 @@
+.home-section {
+    padding: 80px 10%;
+    background: linear-gradient(to bottom, var(--color-bg) 50%, var(--color-soft) 50%);
+    height: fit-content;
+}
+
+.home-section .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 150px;
+    align-items: start;
+}
+
+.hair img {
+    width: 100%;
+    display: block;
+}
+
+.hair p,
+.makeup p,
+.photo p,
+.dress p {
+    letter-spacing: 2px;
+    font-size: var(--font-size-smtext);
+    margin-top: 20px;
+    color: var(--color-small-pg);
+}
+
+.hair h3,
+.makeup h3,
+.photo h3,
+.dress h3 {
+    color: var(--color-primary);
+}
+
+.right-content h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.right-content p {
+    max-width: 80%;
+    color: #666;
+}
+
+.photo {
+    position: relative;
+    top: -600px;
+}
+
+.photo img {
+    width: 100%;
+    display: block;
+}
+
+.makeup {
+    position: relative;
+    top: -50px;
+}
+
+.makeup img {
+    width: 100%;
+    display: block;
+}
+
+.dress {
+    position: relative;
+    top: -650px;
+}
+
+.dress img {
+    width: 100%;
+    display: block;
+}
+
+.reveal {
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal-left {
+    transform: translateX(-100px);
+}
+
+.reveal-right {
+    transform: translateX(100px);
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateX(0);
+}
