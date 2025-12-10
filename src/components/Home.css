@@ -1,7 +1,6 @@
 .home-section {
     padding: 80px 10%;
     background: linear-gradient(to bottom, var(--color-bg) 50%, var(--color-soft) 50%);
-    height: fit-content;
 }
 
 .home-section .container {
@@ -45,7 +44,7 @@
 
 .photo {
     position: relative;
-    top: -600px;
+    margin-top: -700px;
 }
 
 .photo img {
@@ -55,7 +54,7 @@
 
 .makeup {
     position: relative;
-    top: -50px;
+    margin-top: -600px;
 }
 
 .makeup img {
@@ -65,7 +64,7 @@
 
 .dress {
     position: relative;
-    top: -650px;
+    margin-top: -60px;
 }
 
 .dress img {

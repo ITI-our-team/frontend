@@ -4,13 +4,15 @@
   --color-secondary: #90451d; /* text-buttons */
   --color-btn: #e6dac9; /* buttons */
   --color-btn-hover: #deccb3; /* buttons-background-hover */
-  --color-soft: #9c521d6e; /* Cards */
+  --color-soft: #9c521d6e; 
   --color-bg: #f6f3ee; /* Background */
   --color-bg-hover:#e8dfd0; /* background hover */
   --color-gold: #a68868; /* important-icons */
   --color-text:#e4dac6d4;
+  --color-smtext:#a5a5a5;
   --color-paragraph:#9b907f;
   --color-small-pg:#574d3f;
+
   
   --font-size-big-test: 3rem;   /* 1rem = 16px*/
   --font-size-text: 1.2rem;

@@ -40,22 +40,24 @@ function Home() {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quos perspiciatis cupiditate reprehenderit, illum dolorem neque provident sit nihil culpa corrupti. Eveniet atque vel quam repellendus earum error enim fugit.</p>
                     </div>
 
-                    <div className="makeup reveal reveal-left">
-                        <img src="/makeup.jpg" alt="makeup" />
-                        <p> Makeup </p>
-                        <h3>Beautiful Makeup</h3>
+                    <div className="dress reveal reveal-right">
+                        <img src="/dress.jpg" alt="dress" />
+                        <p>Dress</p>
+                        <h3>Amazing Dress</h3>
                     </div>
-
+                    
                     <div className="photo reveal reveal-right">
                         <img src="/photo-session.jpg" alt="photo" />
                         <p>Photo Session</p>
                         <h3>Amazing Photosession</h3>
                     </div>
+
                     <div></div>
-                    <div className="dress reveal reveal-right">
-                        <img src="/dress.jpg" alt="dress" />
-                        <p>Dress</p>
-                        <h3>Amazing Dress</h3>
+                    
+                    <div className="makeup reveal reveal-left">
+                        <img src="/public/makeup.jpg" alt="makeup" />
+                        <p> Makeup </p>
+                        <h3>Beautiful Makeup</h3>
                     </div>
 
                 </div>
