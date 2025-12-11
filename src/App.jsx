@@ -5,8 +5,9 @@ import Hero from './components/Hero';
 import Home from './components/Home';
 import Navbar from "./components/Navbar";
 import View from './components/View';
-import Project from './components/Projects';
-import Reviews from './components/Reviews';
+import Project from './components/Project';
+import Footer from './components/Footer';
+import Review from './components/Review';
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
       <AbouUs />
       <View />
       <Project />
-      <Reviews />
+      <Review />
+      <Footer />
     </>
   )
 }

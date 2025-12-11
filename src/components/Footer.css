@@ -1,0 +1,89 @@
+.footer-section {
+    height: 50vh;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-section .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.content-footer {
+    margin-right: 70px;
+
+}
+
+.content-footer h1 {
+    margin-bottom: 20px;
+    font-size: var(--font-size-big-text);
+    font-family: serif;
+    font-weight: bold;
+    color: var(--color-btn);
+}
+
+.content-footer p {
+    line-height: var(--line-height);
+    font-size: var(--font-size-smtext);
+    color: var(--color-smtext);
+}
+
+.explore ul,
+.social ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.explore ul li,
+.social ul li {
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.explore-social {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+.explore h4,
+.social h4 {
+    color: var(--color-btn);
+    font-size: var(--font-size-text);
+    margin-bottom: 18px;
+}
+
+.explore li {
+    color: var(--color-smtext);
+    font-weight: 400;
+    font-size: var(--font-size-smtext);
+}
+
+.explore li:hover {
+    color: var(--color-btn);
+}
+
+.social li {
+    font-size: 1.6rem;
+    padding-right: 20px;
+}
+
+.social li:nth-of-type(1) {
+    color: #1877F2;
+}
+
+.social li:nth-of-type(2) {
+    color: #686868
+}
+
+.social li:nth-of-type(3) {
+    background: linear-gradient(45deg, #F58529, #FEDA77, #DD2A7B, #8134AF, #515BD4);
+    -webkit-background-clip: text;
+    color: transparent;
+}
