@@ -1,5 +1,5 @@
 
-import './view.css'
+import './View.css'
 
 function View() {
     return (
