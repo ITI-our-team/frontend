@@ -53,7 +53,7 @@ function Home() {
                     <div></div>
                     
                     <div className="makeup reveal reveal-right">
-                        <img src="/public/makeup.jpg" alt="makeup" />
+                        <img src="/makeup.jpg" alt="makeup" />
                         <p> Makeup </p>
                         <h3>Beautiful Makeup</h3>
                     </div>
