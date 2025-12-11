@@ -3,9 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import "./reviews.css";
+import "./Reviews.css";
 
-export default function ReviewsSlider() {
+export default function Reviews() {
   const reviews = [
     {
       name: "Mohamed Ali",
