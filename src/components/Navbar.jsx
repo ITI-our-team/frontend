@@ -2,6 +2,15 @@
 import './Navbar.css'
 
 function Navbar() {
+    window.addEventListener("scroll", () => {
+        const nav = document.querySelector(".nav-section");
+
+        if (window.scrollY >= window.innerHeight) {
+            nav.classList.add("scrolled");
+        } else {
+            nav.classList.remove("scrolled");
+        }
+    });
     return (
         <>
             <section className='nav-section'>

@@ -22,6 +22,7 @@
 .content h1{
     text-transform: uppercase;
     margin-bottom: 20px;
+font-family: serif;
 }
 
 .content p{
@@ -29,4 +30,5 @@
     font-weight: bold;
     color: var(--color-smtext);
     margin-top: 20px;
+    font-family: serif;
 }

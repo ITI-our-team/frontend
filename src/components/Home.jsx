@@ -40,7 +40,7 @@ function Home() {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quos perspiciatis cupiditate reprehenderit, illum dolorem neque provident sit nihil culpa corrupti. Eveniet atque vel quam repellendus earum error enim fugit.</p>
                     </div>
 
-                    <div className="dress reveal reveal-right">
+                    <div className="dress reveal reveal-left">
                         <img src="/dress.jpg" alt="dress" />
                         <p>Dress</p>
                         <h3>Amazing Dress</h3>
@@ -54,7 +54,7 @@ function Home() {
 
                     <div></div>
                     
-                    <div className="makeup reveal reveal-left">
+                    <div className="makeup reveal reveal-right">
                         <img src="/public/makeup.jpg" alt="makeup" />
                         <p> Makeup </p>
                         <h3>Beautiful Makeup</h3>
