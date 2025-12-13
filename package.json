@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:backend": "cd .. && cd wedify_backend && python manage.py runserver",
+    "start:frontend": "npm run dev",
+    "start:all": "concurrently --kill-others \"npm run start:backend\" \"npm run start:frontend\""
   },
   "dependencies": {
+    "concurrently": "^9.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.10.1",

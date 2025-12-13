@@ -4,18 +4,19 @@ import Service from './Service.jsx'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
     
-function Services() {
-
+function Services({api_url}) {
+    const services_list_api = `${api_url}services/`;
     let [myData, setMyData] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
             try {
                 const result = await fetch(
-                    "https://www.themealdb.com/api/json/v1/1/search.php?s="
+                    services_list_api
                 );
                 const data = await result.json();
-                setMyData(data.meals || []);
+                console.log(data)
+                setMyData(data || []);
             } catch (err) {
                 console.log(err);
                 setMyData([]);
@@ -42,9 +43,11 @@ function Services() {
                         </div>
 
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'venue')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
 
@@ -55,11 +58,12 @@ function Services() {
                             <h2>Wedding Photographers</h2>
                             <Link to={'/services/category/photographers'}><p>All Wedding Photographers</p></Link>
                         </div>
-
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'photographer')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
 
@@ -71,9 +75,11 @@ function Services() {
                         </div>
 
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'wedding-planners')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
 
@@ -85,9 +91,11 @@ function Services() {
                         </div>
 
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'videographers')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
 
@@ -99,9 +107,11 @@ function Services() {
                         </div>
 
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'catering')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
 
@@ -113,13 +123,30 @@ function Services() {
                         </div>
 
                         <div className="cards">
-                            {myData.slice(0, 8).map(service => (
-                                <Service service={service} key={service.idMeal} />
-                            ))}
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'Entertainment')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
                         </div>
                     </div>
                 
-                
+                    {/* section Wedding makeup */}
+                    <div className="wedding-venues-section section">
+                        <div className="header">
+                            <h2>Wedding MakeUP</h2>
+                            {/* <Link to={'/services/category/entertainment'}><p>All Wedding Entertainment</p></Link> */}
+                        </div>
+
+                        <div className="cards">
+                            {myData.slice(0, 8)
+                                .filter(service => service.category === 'makeup')
+                                .map(service => ( 
+                                    <Service service={service} key={service.id} />
+                                ))}
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </>
