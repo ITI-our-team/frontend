@@ -95,7 +95,7 @@ function Services() {
                     <div className="wedding-caterers-section section">
                         <div className="header">
                             <h2>Wedding Caterers</h2>
-                            <Link to={'/'}><p>All Wedding Caterers</p></Link>
+                            <Link to={'/services/wedding-caterers'}><p>All Wedding Caterers</p></Link>
                         </div>
 
                         <div className="cards">
@@ -109,7 +109,7 @@ function Services() {
                     <div className="wedding-venues-section section">
                         <div className="header">
                             <h2>Wedding Entertainment</h2>
-                            <Link to={'/'}><p>All Wedding Entertainment</p></Link>
+                            <Link to={'/services/entertainment'}><p>All Wedding Entertainment</p></Link>
                         </div>
 
                         <div className="cards">

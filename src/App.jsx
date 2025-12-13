@@ -14,6 +14,8 @@ import WeddingVenue from './components/WeddingVenue';
 import Photographers from './components/Photographers';
 import WeddingPlanners from './components/WeddingPlanners';
 import Videographers from './components/Videographers';
+import WeddingCaterers from './components/WeddingCaterers';
+import Entertainment from './components/Entertainment';
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
         <Route path='/services/photographers' element={<Photographers />} />
         <Route path='/services/wedding-planners' element={<WeddingPlanners />} />
         <Route path='/services/videographers' element={< Videographers />} />
+        <Route path='/services/wedding-caterers' element={< WeddingCaterers />} />
+        <Route path='/services/entertainment' element={< Entertainment />} />
         
       </Routes>
 
