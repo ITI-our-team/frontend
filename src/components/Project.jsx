@@ -1,4 +1,5 @@
 import "./Project.css";
+import { Link } from 'react-router-dom';
 
 function Project() {
   return (
@@ -47,9 +48,11 @@ function Project() {
           {/* Slider End */}
 
           <div className="button">
+            <Link to={"./services"}>
             <a href="portfolio.html" className="more-btn">
               <span className="-btn">Discover More</span>
-            </a>
+              </a>
+              </Link>
           </div>
         </div>
       </section>

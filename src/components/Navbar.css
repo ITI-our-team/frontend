@@ -66,10 +66,10 @@ nav {
     color: var(--color-primary);
 }
 
-.nav-section.scrolled .menu button:hover{
+/* .nav-section.scrolled .menu button:hover{
     background-color: rgba(247, 239, 213, 0.393);
     color: var(--color-primary);
-}
+} */
 
 .sign-in{
     font-size: 16px;

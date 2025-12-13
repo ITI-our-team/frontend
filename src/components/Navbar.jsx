@@ -1,44 +1,57 @@
-
 import './Navbar.css'
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Navbar() {
-    window.addEventListener("scroll", () => {
+
+    const location = useLocation();
+
+    useEffect(() => {
         const nav = document.querySelector(".nav-section");
 
-        if (window.scrollY >= window.innerHeight) {
+        if (location.pathname === "/services") {
             nav.classList.add("scrolled");
-        } else {
-            nav.classList.remove("scrolled");
+            return;
         }
-    });
-    return (
-        <>
-            <section className='nav-section'>
-                <div className="container">
-                    <nav>
-                        <div className="part-one">
-                            {/* Logo */}
-                            <div className="logo">
-                                <p>WEDORA</p>
-                            </div>
+        const handleScroll = () => {
+            if (window.scrollY >= window.innerHeight) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        };
 
-                            {/* buttons Menu */}
-                            <div className="menu">
-                                <button>Home</button>
-                                <button>venues and vendors <i class="fa-solid fa-angle-down"></i></button>
-                                <button>shop <i class="fa-solid fa-angle-down"></i></button>
-                            </div>
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [location.pathname]);
+
+    return (
+        <section className='nav-section'>
+            <div className="container">
+                <nav>
+                    <div className="part-one">
+
+                        <div className="logo">
+                            <p>WEDORA</p>
                         </div>
-                        {/* buttons login & started */}
-                        <div className="btns">
-                            <button className='sign-in'>Sign in</button>
-                            <button className='get-start'>Get started</button>
+
+                        <div className="menu">
+                            <Link to={'/'}><button>Home</button></Link>
+                            <Link to={'/services'}><button>venues and vendors</button></Link>
                         </div>
-                    </nav>
-                </div>
-            </section>
-        </>
-    )
+
+                    </div>
+
+                    <div className="btns">
+                        <button className='sign-in'>Sign in</button>
+                        <button className='get-start'>Get started</button>
+                    </div>
+
+                </nav>
+            </div>
+        </section>
+    );
 }
 
-export default Navbar
+export default Navbar;

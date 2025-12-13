@@ -1,11 +1,12 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --color-primary: rgb(22, 19, 16); /* Header Footer text */
+  --color-primary: rgb(30, 24, 18); /* Header Footer text */
   --color-secondary: #90451d; /* text-buttons */
   --color-btn: #e6dac9; /* buttons */
   --color-btn-hover: #deccb3; /* buttons-background-hover */
   --color-soft: #9c521d6e; 
   --color-bg: #f6f3ee; /* Background */
+  --color-bg-local: rgb(245, 241, 241);
   --color-bg-hover:#00000044; /* background hover */
   --color-gold: #a68868; /* important-icons */
   --color-text:#e4dac6d4;
@@ -21,7 +22,7 @@
   --line-height: 1.6;
 }
 
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -29,4 +30,9 @@ body {
 a{
   text-decoration: none;
   color: inherit;
+}
+
+p{
+  margin: 0;
+  padding: 0;
 }

@@ -8,20 +8,28 @@ import View from './components/View';
 import Project from './components/Project';
 import Footer from './components/Footer';
 import Review from './components/Review';
-
+import { Routes, Route } from "react-router-dom"
+import Services from './components/Services';
 
 function App() {
 
-  
+
   return (
     <>
       <Navbar />
-      <Hero />
-      <Home />
-      <AbouUs />
-      <View />
-      <Project />
-      <Review />
+
+      <Routes>
+        <Route path='/' element={<>
+          <Hero />
+          <Home />
+          <AbouUs />
+          <View />
+          <Project />
+          <Review />
+        </>} />
+        <Route path='/services' element={<Services />} />
+      </Routes>
+
       <Footer />
     </>
   )
