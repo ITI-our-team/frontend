@@ -67,7 +67,7 @@ function Services() {
                     <div className="wedding-planners-section section">
                         <div className="header">
                             <h2>Wedding Planners</h2>
-                            <Link to={'/'}><p>All Wedding Planners</p></Link>
+                            <Link to={'/services/wedding-planners'}><p>All Wedding Planners</p></Link>
                         </div>
 
                         <div className="cards">
@@ -81,7 +81,7 @@ function Services() {
                     <div className="wedding-videographers-section section">
                         <div className="header">
                             <h2>Wedding Videographers</h2>
-                            <Link to={'/'}><p>All Wedding Videographers</p></Link>
+                            <Link to={'/services/videographers'}><p>All Wedding Videographers</p></Link>
                         </div>
 
                         <div className="cards">

@@ -12,6 +12,8 @@ import { Routes, Route } from "react-router-dom"
 import Services from './components/Services';
 import WeddingVenue from './components/WeddingVenue';
 import Photographers from './components/Photographers';
+import WeddingPlanners from './components/WeddingPlanners';
+import Videographers from './components/Videographers';
 
 function App() {
 
@@ -23,7 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<>
           <Hero />
-          <Home />
+          <Home />  
           <AbouUs />
           <View />
           <Project />
@@ -32,6 +34,8 @@ function App() {
         <Route path='/services' element={<Services />} />
         <Route path='/services/wedding-venues' element={<WeddingVenue />} />
         <Route path='/services/photographers' element={<Photographers />} />
+        <Route path='/services/wedding-planners' element={<WeddingPlanners />} />
+        <Route path='/services/videographers' element={< Videographers />} />
         
       </Routes>
 
