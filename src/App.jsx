@@ -10,12 +10,9 @@ import Footer from './components/Footer';
 import Review from './components/Review';
 import { Routes, Route } from "react-router-dom"
 import Services from './components/Services';
-import WeddingVenue from './components/WeddingVenue';
-import Photographers from './components/Photographers';
-import WeddingPlanners from './components/WeddingPlanners';
-import Videographers from './components/Videographers';
-import WeddingCaterers from './components/WeddingCaterers';
 import Entertainment from './components/Entertainment';
+import ServiceDetails from './components/ServiceDetails';
+import ServiceCategory from './components/ServiceCategory';
 
 function App() {
 
@@ -27,20 +24,20 @@ function App() {
       <Routes>
         <Route path='/' element={<>
           <Hero />
-          <Home />  
+          <Home />
           <AbouUs />
           <View />
           <Project />
           <Review />
         </>} />
         <Route path='/services' element={<Services />} />
-        <Route path='/services/wedding-venues' element={<WeddingVenue />} />
-        <Route path='/services/photographers' element={<Photographers />} />
-        <Route path='/services/wedding-planners' element={<WeddingPlanners />} />
-        <Route path='/services/videographers' element={< Videographers />} />
-        <Route path='/services/wedding-caterers' element={< WeddingCaterers />} />
         <Route path='/services/entertainment' element={< Entertainment />} />
-        
+        <Route path="/services/:id" element={<ServiceDetails />} />
+        <Route
+          path="/services/category/:type"
+          element={<ServiceCategory />}
+        />
+
       </Routes>
 
       <Footer />

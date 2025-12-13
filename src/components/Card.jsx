@@ -1,21 +1,20 @@
-
 import './Card.css'
+import { Link } from 'react-router-dom';
 
-
-function Card(props) {
-    
+function Card({ id, title, imge }) {
     return (
-        <div className='card'>
-            <div className="card-img">
-                <img src= {props.imge} alt={props.title} />
-            </div>
+        <Link to={`/services/${id}`} className="card-link">
+            <div className='card'>
+                <div className="card-img">
+                    <img src={imge} alt={title} />
+                </div>
 
-            <div className="about-card">
-                <p className='title-card'>{props.title}</p>
+                <div className="about-card">
+                    <p className='title-card'>{title}</p>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
 export default Card;
-
