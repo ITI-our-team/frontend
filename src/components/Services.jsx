@@ -53,7 +53,7 @@ function Services() {
                     <div className="wedding-photographers-section section">
                         <div className="header">
                             <h2>Wedding Photographers</h2>
-                            <Link to={'/'}><p>All Wedding Photographers</p></Link>
+                            <Link to={'/services/photographers'}><p>All Wedding Photographers</p></Link>
                         </div>
 
                         <div className="cards">

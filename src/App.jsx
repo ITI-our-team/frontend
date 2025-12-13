@@ -11,6 +11,7 @@ import Review from './components/Review';
 import { Routes, Route } from "react-router-dom"
 import Services from './components/Services';
 import WeddingVenue from './components/WeddingVenue';
+import Photographers from './components/Photographers';
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
         </>} />
         <Route path='/services' element={<Services />} />
         <Route path='/services/wedding-venues' element={<WeddingVenue />} />
+        <Route path='/services/photographers' element={<Photographers />} />
+        
       </Routes>
 
       <Footer />
