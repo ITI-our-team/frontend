@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Review from './components/Review';
 import { Routes, Route } from "react-router-dom"
 import Services from './components/Services';
+import WeddingVenue from './components/WeddingVenue';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Review />
         </>} />
         <Route path='/services' element={<Services />} />
+        <Route path='/services/wedding-venues' element={<WeddingVenue />} />
       </Routes>
 
       <Footer />

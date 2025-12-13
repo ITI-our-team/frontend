@@ -3,7 +3,7 @@ import './Services.css'
 import Service from './Service.jsx'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+    
 function Services() {
 
     let [myData, setMyData] = useState([]);
@@ -38,7 +38,7 @@ function Services() {
                     <div className="wedding-venues-section section">
                         <div className="header">
                             <h2>Wedding Venues</h2>
-                            <Link to={'/'}><p>All Wedding Venues</p></Link>
+                            <Link to={'/services/wedding-venues'}><p>All Wedding Venues</p></Link>
                         </div>
 
                         <div className="cards">
@@ -52,7 +52,7 @@ function Services() {
 
                     <div className="wedding-photographers-section section">
                         <div className="header">
-                            <h2>Wedding Venues</h2>
+                            <h2>Wedding Photographers</h2>
                             <Link to={'/'}><p>All Wedding Photographers</p></Link>
                         </div>
 
@@ -66,7 +66,7 @@ function Services() {
                     {/* section Wedding Planners */}
                     <div className="wedding-planners-section section">
                         <div className="header">
-                            <h2>Wedding Venues</h2>
+                            <h2>Wedding Planners</h2>
                             <Link to={'/'}><p>All Wedding Planners</p></Link>
                         </div>
 
@@ -80,7 +80,7 @@ function Services() {
                     {/* section Wedding Videographers */}
                     <div className="wedding-videographers-section section">
                         <div className="header">
-                            <h2>Wedding Venues</h2>
+                            <h2>Wedding Videographers</h2>
                             <Link to={'/'}><p>All Wedding Videographers</p></Link>
                         </div>
 
@@ -94,7 +94,7 @@ function Services() {
                     {/* section Wedding Caterers */}
                     <div className="wedding-caterers-section section">
                         <div className="header">
-                            <h2>Wedding Venues</h2>
+                            <h2>Wedding Caterers</h2>
                             <Link to={'/'}><p>All Wedding Caterers</p></Link>
                         </div>
 
@@ -108,7 +108,7 @@ function Services() {
                     {/* section Wedding Entertainment */}
                     <div className="wedding-venues-section section">
                         <div className="header">
-                            <h2>Wedding Venues</h2>
+                            <h2>Wedding Entertainment</h2>
                             <Link to={'/'}><p>All Wedding Entertainment</p></Link>
                         </div>
 
