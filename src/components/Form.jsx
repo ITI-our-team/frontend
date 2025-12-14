@@ -23,11 +23,7 @@ function Form() {
 
                     <label>Wedding Date *</label>
                     <input type="date" />
-
-                    <div className="checkbox">
-                        <input type="checkbox" id="flexible" />
-                        <label htmlFor="flexible">My date is flexible</label>
-                    </div>
+                    
                     <label>Message</label>
                     <textarea
                         placeholder="Tell us about your wedding..."

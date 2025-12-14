@@ -2,17 +2,15 @@
     background: #fff;
     padding: 24px;  
     border-radius: 16px;
-    /* box-shadow: 0 10px 30px rgba(0,0,0,0.08); */
-    border: 1px solid red;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     width: 40%;
     height: max-content;
-    
+    margin-left: 200px;
 }
 
 .form-section form {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
 }
 
 .form-section label {
@@ -43,14 +41,6 @@
 
 .two-inputs div {
     width: 100%;
-}
-
-.checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    font-size: 14px;
 }
 
 .terms {
