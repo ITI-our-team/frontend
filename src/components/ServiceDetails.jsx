@@ -3,33 +3,60 @@ import { useEffect, useState } from "react";
 import "./ServiceDetails.css";
 import Form from "./Form";
 
-function ServiceDetails() {
+function ServiceDetails({api_url}) {
     const { id } = useParams();
     const [service, setService] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getService = async () => {
+            setIsLoading(true);
             const res = await fetch(
-                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+                `${api_url}api/services/${id}`
             );
-            const data = await res.json();
-            setService(data.meals[0]);
+            
+            try {
+                const data = await res.json();
+                setService(data);
+            } catch (err) {
+                console.error("error fetching data:", err);
+                setService([]);
+            } finally {
+                setIsLoading(false);
+            }
         };
-
         getService();
-    }, [id]);
+    }, [api_url]);
 
-    if (!service) return <p>Loading...</p>;
+    // if (!service) return <p>Loading...</p>;
+    if (isLoading) {
+        return (
+            <>
+            <section className="service-details-section">
+                    <div className='container my-5 text-center'>
+                        <div className='h1 py-3'>Loading Data...</div>
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                    </div>
+            </section>
+            </>
+        );
+    }
 
     return (
         <>
             <section className="service-details-section">
                 <div className="container">
-                    <h1>{service.strMeal}</h1>
+                    <h1>{service.name}</h1>
 
                     <div className="details-hero">
                         <div className="img-details">
-                            <img src={service.strMealThumb} alt={service.strMeal} />
+                            <img src={service.thumbnail} alt={service.name} />
                         </div>
                         <Form />
                     </div>
