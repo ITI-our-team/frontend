@@ -12,6 +12,8 @@ import { Routes, Route } from "react-router-dom"
 import Services from './components/Services';
 import ServiceDetails from './components/ServiceDetails';
 import ServiceCategory from './components/ServiceCategory';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
@@ -35,6 +37,8 @@ const api_url = 'http://127.0.0.1:8000/';
           path="/services/category/:type"
           element={<ServiceCategory />}
         />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
 
       </Routes>
 

@@ -45,8 +45,12 @@ function Navbar() {
                     </div>
 
                     <div className="btns">
-                        <button className="sign-in">Sign in</button>
+                        <Link to="/login">
+                            <button className="sign-in">Sign in</button>
+                        </Link>
+                        <Link to="/signup">
                         <button className="get-start">Get started</button>
+                        </Link>
                     </div>
                 </nav>
             </div>
