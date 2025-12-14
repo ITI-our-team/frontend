@@ -1,0 +1,30 @@
+.service-details-section {
+    padding: 120px 0;
+}
+
+.service-details-section h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-family: serif;
+    font-size: var(--font-size-big-text);
+    font-weight: 800;
+}
+
+.details-hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid red;
+    width: 100%;
+}
+.img-details{
+    width: 40%;
+}
+.img-details img {
+    width: 100%;
+}
+
+
+
+
+

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./ServiceDetails.css";
+import Form from "./Form";
 
 function ServiceDetails() {
     const { id } = useParams();
@@ -22,23 +23,17 @@ function ServiceDetails() {
 
     return (
         <>
-            <section className="service-details">
-
-                <div className="details-hero">
-                    <img src={service.strMealThumb} alt={service.strMeal} />
+            <section className="service-details-section">
+                <div className="container">
                     <h1>{service.strMeal}</h1>
-                </div>
 
-                <div className="details-content container">
-                    <h2>About This Service</h2>
-                    <p>
-                        This wedding service is perfect for couples looking for a
-                        unique and unforgettable experience. Carefully crafted to
-                        match your special day.
-                    </p>
+                    <div className="details-hero">
+                        <div className="img-details">
+                            <img src={service.strMealThumb} alt={service.strMeal} />
+                        </div>
+                        <Form />
+                    </div>
 
-                    <h3>Location</h3>
-                    <p>Available Worldwide</p>
                 </div>
             </section>
         </>
