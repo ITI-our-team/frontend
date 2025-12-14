@@ -6,7 +6,7 @@ function Card({ id, title, imge }) {
         <Link to={`/services/${id}`} className="card-link">
             <div className='card'>
                 <div className="card-img">
-                    <img src={imge} alt={title} />
+                    <img src={imge} alt={title}/>
                 </div>
 
                 <div className="about-card">
