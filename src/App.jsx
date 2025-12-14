@@ -35,7 +35,7 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/services/:id" element={<ServiceDetails api_url={api_url} />} />
         <Route
           path="/services/category/:type"
-          element={<ServiceCategory />}
+          element={<ServiceCategory api_url={api_url} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

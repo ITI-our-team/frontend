@@ -3,64 +3,66 @@ import './ServiceCategory.css';
 import Service from './Service.jsx';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import {SERVICES_CONFIG} from './categories.js';
 
-
-const SERVICES_CONFIG = {
-    "wedding-venues": {
-        title: "Wedding Venues",
-        placeholder: "Search wedding venue...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    },
-    "photographers": {
-        title: "Wedding Photographers",
-        placeholder: "Search photographer...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    },
-    "wedding-planners": {
-        title: "Wedding Planners",
-        placeholder: "Search wedding planner...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    },
-    "videographers": {
-        title: "Wedding Videographers",
-        placeholder: "Search videographer...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    },
-    "wedding-caterers": {
-        title: "Wedding Caterers",
-        placeholder: "Search wedding caterer...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    },
-    "entertainment": {
-        title: "Wedding Entertainment",
-        placeholder: "Search wedding entertainment...",
-        api: "https://www.themealdb.com/api/json/v1/1/search.php?s="
-    }
-};
-
-function ServiceCategory() {
+function ServiceCategory({api_url}) {
     const { type } = useParams();
     const config = SERVICES_CONFIG[type];
-
+    console.log(config)
     const [myData, setMyData] = useState([]);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState();
+    const api = `${api_url}api/services/?category=`
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
+            setIsLoading(true);
+            const res = await fetch(`${api}${config.slug}`);
             try {
-                const res = await fetch(`${config.api}${search}`);
                 const data = await res.json();
-                setMyData(data.meals || []);
+                setMyData(data || []);
             } catch (err) {
-                console.log(err)
+                console.error("error fetching data:", err);
                 setMyData([]);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         getData();
-    }, [search, config.api]);
+    }, [config.slug]);
 
-    if (!config) return <p>Page Not Found</p>;
+    if (!config) return (
+            <div className='container my-5 pt-5 text-center'>
+                <div className="alert alert-info mt-4" role="alert">
+                    <h4 className="alert-heading">No Data Found!</h4>
+                    <p>There are currently no data available.</p>
+                    <hr/>
+                </div>
+                <div className="py-4"> </div>
+            </div>
+        );
+    if (isLoading) {
+        return (
+            <>
+            <section>
+                    <div className='container my-5 text-center'>
+                        <div className='h1 py-3'>Loading Data...</div>
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                        <div className="py-4"> </div>
+                    </div>
+            </section>
+            </>
+        );
+    }
+    const scrollToTop = () => {
+        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
+    };
 
     return (
         <>
@@ -77,7 +79,7 @@ function ServiceCategory() {
                         className="search-input"
                     />
 
-                    <Link to="/services">
+                    <Link to="/services"  onClick={scrollToTop} >
                         <button className='back-btn'>
                             <i className="fa-solid fa-arrow-left"></i>
                             Back
@@ -88,7 +90,7 @@ function ServiceCategory() {
                 <div className="cards">
                     {myData.map(service => (
                         <Service
-                            key={service.idMeal}
+                            key={service.id}
                             service={service}
                         />
                     ))}

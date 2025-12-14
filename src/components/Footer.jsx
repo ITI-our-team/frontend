@@ -28,9 +28,9 @@ function Footer() {
                             <div className="social">
                                 <h4>Contact</h4>
                                 <ul>
-                                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa-solid fa-envelope"></i></a></li>
-                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="#"><i className="fa-brands fa-facebook"></i></a></li>
+                                    <li><a href="#"><i className="fa-solid fa-envelope"></i></a></li>
+                                    <li><a href="#"><i className="fa-brands fa-instagram"></i></a></li>
                                 </ul>
                             </div>
                         </div>
