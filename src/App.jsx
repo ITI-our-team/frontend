@@ -37,8 +37,8 @@ const api_url = 'http://127.0.0.1:8000/';
           path="/services/category/:type"
           element={<ServiceCategory api_url={api_url} />}
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login api_url={api_url} />} />
+        <Route path="/signup" element={<SignUp api_url={api_url} />} />
 
       </Routes>
 
