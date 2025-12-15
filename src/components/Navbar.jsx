@@ -41,6 +41,7 @@ function Navbar() {
                         <div className="menu">
                             <Link to="/"><button>Home</button></Link>
                             <Link to="/services"><button>venues and vendors</button></Link>
+                            <Link to="/"><button>projects</button></Link>
                         </div>
                     </div>
 

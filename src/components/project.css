@@ -188,6 +188,65 @@
 .portfolio-one__slider .item:first-child  img {
   mix-blend-mode: normal;
 }
+/* ======================
+   Responsive Portfolio
+====================== */
+
+/* tablet*/
+@media (max-width: 991px) {
+  .portfolio-one__slider {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .portfolio-one__slider .item {
+    width: 45%;
+  }
+
+  .portfolio-one__item {
+    margin: 0;
+  }
+}
+
+/* phone*/
+@media (max-width: 576px) {
+  .portfolio-one__slider {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-one__slider .item {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .portfolio-one__hover {
+    max-width: 100%;
+    margin-top: -60px;
+  }
+
+  .portfolio-one__hover-bottom {
+    padding: 18px 20px;
+    visibility: visible;
+    opacity: 1;
+    animation: none;
+  }
+
+  .portfolio-one__thumb img {
+    mix-blend-mode: normal;
+  }
+   .section-title__tagline {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .more-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+ 
 @keyframes fadeInDown{
 0% {
     opacity: 0;

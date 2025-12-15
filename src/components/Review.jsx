@@ -53,27 +53,40 @@ export default function Review() {
 
   return (
     <section className="reviews-section">
-      <h2 className="title">BRIDE & GROOM REVIEWS</h2>
+      <div className="container">
+        <h2 className="title">BRIDE & GROOM REVIEWS</h2>
 
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        autoplay={{ delay: 2500 }}
-        pagination={{ clickable: true }}
-        spaceBetween={20}
-        slidesPerView={3}
-        className="reviews-slider"
-      >
-        {reviews.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="review-card">
-              <img src={item.img} alt={item.name} className="review-img" />
-              <p className="review-text">"{item.review}"</p>
-              <h3 className="review-name">{item.name}</h3>
-              <span className="review-job">{item.job}</span>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          autoplay={{ delay: 2500 }}
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={3}
+          breakpoints={{
+              0: {
+                slidesPerView: 1,  
+              },
+              768: {
+                slidesPerView: 2,  
+              },
+              1024: {
+                slidesPerView: 3,  
+              },
+          }}
+          className="reviews-slider"
+        >
+          {reviews.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="review-card">
+                <img src={item.img} alt={item.name} className="review-img" />
+                <p className="review-text">"{item.review}"</p>
+                <h3 className="review-name">{item.name}</h3>
+                <span className="review-job">{item.job}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </section>
   );
 }

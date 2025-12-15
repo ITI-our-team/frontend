@@ -1,91 +1,221 @@
+/* =====================
+   Home Section
+===================== */
+
 .home-section {
-    padding: 80px 10%;
-    background: linear-gradient(to bottom, var(--color-bg) 50%, var(--color-soft) 50%);
+  padding: 80px 10%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bg) 0%,
+    var(--color-bg) 45%,
+    var(--color-soft) 65%,
+    var(--color-soft) 100%
+  );
 }
 
+/* Layout */
 .home-section .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 150px;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: start;
 }
 
-.hair img {
-    width: 100%;
-    display: block;
+/* =====================
+   Right Content
+===================== */
+
+.right-content {
+  position: relative;
+
+}
+
+.right-content h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.right-content p {
+  max-width: 80%;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* =====================
+   Cards Common
+===================== */
+
+.hair,
+.dress,
+.photo,
+.makeup {
+  position: relative;
+}
+
+.hair img,
+.dress img,
+.photo img,
+.makeup img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
 }
 
 .hair p,
 .makeup p,
 .photo p,
 .dress p {
-    letter-spacing: 2px;
-    font-size: var(--font-size-smtext);
-    margin-top: 20px;
-    color: var(--color-small-pg);
+  letter-spacing: 2px;
+  font-size: var(--font-size-smtext);
+  margin-top: 20px;
+  color: var(--color-small-pg);
 }
 
 .hair h3,
 .makeup h3,
 .photo h3,
 .dress h3 {
-    color: var(--color-primary);
+  color: var(--color-primary);
+  margin-top: 5px;
 }
 
-.right-content h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-}
+/* =====================
+   Overlap (Desktop Only)
+===================== */
 
-.right-content p {
-    max-width: 80%;
-    color: #666;
-}
-
-.photo {
-    position: relative;
-    margin-top: -700px;
-}
-
-.photo img {
-    width: 100%;
-    display: block;
-}
-
-.makeup {
-    position: relative;
-    margin-top: -600px;
-}
-
-.makeup img {
-    width: 100%;
-    display: block;
+.photo ,
+.makeup  {
+  margin-top: -500px;
 }
 
 .dress {
-    position: relative;
-    margin-top: -60px;
+  margin-top: -40px;
 }
 
-.dress img {
-    width: 100%;
-    display: block;
-}
+/* =====================
+   Reveal Animation
+===================== */
 
 .reveal {
-    opacity: 0;
-    transition: all 1s ease;
+  opacity: 0;
+  transition: all 1s ease;
 }
 
 .reveal-left {
-    transform: translateX(-100px);
+  transform: translateX(-100px);
 }
 
 .reveal-right {
-    transform: translateX(100px);
+  transform: translateX(100px);
 }
 
 .reveal.show {
-    opacity: 1;
-    transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =====================
+   Mobile Responsive
+===================== */
+
+/* tablet */
+
+@media (max-width: 1024px) { 
+  .home-section {
+    padding: 60px 6%;
+  }
+
+  .home-section .container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 60px;
+  }
+
+
+  .right-content h2 {
+    font-size: 28px;
+    line-height: 1.4;
+  }
+
+  .right-content p {
+    font-size: 15px;
+    max-width: 90%;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  
+  .photo,
+  .makeup,
+  .dress,
+  .hair {
+    margin-top: 0;
+  }
+
+  .hair p,
+  .makeup p,
+  .photo p,
+  .dress p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .hair h3,
+  .makeup h3,
+  .photo h3,
+  .dress h3 {
+    font-size: 18px;
+    }
+    .right-content {
+        order: -1; 
+        text-align: center;
+    }
+}
+
+
+/* phone */
+
+@media (max-width: 576px) {
+  .home-section {
+    padding: 60px 20px;
+  }
+
+  .home-section .container {
+    gap: 50px;
+  }
+
+  .right-content h2 {
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  .right-content p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hair p,
+  .makeup p,
+  .photo p,
+  .dress p {
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .hair h3,
+  .makeup h3,
+  .photo h3,
+  .dress h3 {
+    font-size: 18px;
+  }
+
+  
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(40px);
+  }
+
+  .reveal.show {
+    transform: translateY(0);
+  }
 }
