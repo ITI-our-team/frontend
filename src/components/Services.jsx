@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import CATEGORY_SECTIONS from './categories.js'
 
 function Services({ api_url }) {
-    
+
     // let [myData, setMyData] = useState([]);
     const [categorizedData, setCategorizedData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -29,9 +29,9 @@ function Services({ api_url }) {
             });
             try {
                 const results = await Promise.all(fetchPromises);
-                
+
                 const newCategorizedData = results.reduce((acc, result) => {
-                    acc[result.slug] = result.data.slice(0, 8); 
+                    acc[result.slug] = result.data.slice(0, 8);
                     return acc;
                 }, {});
 
@@ -48,34 +48,34 @@ function Services({ api_url }) {
     }, [api_url]); // Rerun only if api_url changes
 
     const scrollToTop = () => {
-        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
 
     if (isLoading) {
         return (
             <>
-            <section className='services-section'>
-                <div className="container">
-                    <div className="header-services">
-                        <h1>All Your Wedding Essentials, From Trusted Local Vendors</h1>
-                        <p>Our wedding service provider directory helps you quickly connect with the best wedding professionals. Browse a comprehensive list of professional photographers, florists, caterers, and venues, with detailed information and reliable reviews to support your decision. Whether you're looking for simple services or unique details to make your wedding truly special, our directory provides everything you need for a perfectly organized day.</p>
-                    </div>
-                    <div className='container my-5 text-center'>
-                        <div className='h1 py-3'>Loading Data...</div>
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                <section className='services-section'>
+                    <div className="container">
+                        <div className="header-services">
+                            <h1>All Your Wedding Essentials, From Trusted Local Vendors</h1>
+                            <p>Our wedding service provider directory helps you quickly connect with the best wedding professionals. Browse a comprehensive list of professional photographers, florists, caterers, and venues, with detailed information and reliable reviews to support your decision. Whether you're looking for simple services or unique details to make your wedding truly special, our directory provides everything you need for a perfectly organized day.</p>
                         </div>
-                        <div className="py-4"> </div>
-                        <div className="py-4"> </div>
-                        <div className="py-4"> </div>
-                        <div className="py-4"> </div>
+                        <div className='container my-5 text-center'>
+                            <div className='h1 py-3'>Loading Data...</div>
+                            <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                            <div className="py-4"> </div>
+                            <div className="py-4"> </div>
+                            <div className="py-4"> </div>
+                            <div className="py-4"> </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
             </>
         );
     }
-    
+
     return (
         <>
             <section className='services-section'>
@@ -88,7 +88,7 @@ function Services({ api_url }) {
                     {/* Dynamic Rendering of All Sections */}
                     {CATEGORY_SECTIONS.map((section) => {
                         const services = categorizedData[section.slug] || [];
-                        
+
                         // Only render the section if there are services available
                         if (services.length === 0) {
                             return null;
@@ -109,117 +109,6 @@ function Services({ api_url }) {
                             </div>
                         );
                     })}
-
-                    {/* section wedding venues */}
-                    {/* <div className="wedding-venues-section section">
-                        <div className="header">
-                            <h2>Wedding Venues</h2>
-                            <Link to={'/services/category/wedding-venues'}><p>All Wedding Venues</p></Link>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'venue')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-
-                    {/* section Wedding Photographers */}
-
-                    {/* <div className="wedding-photographers-section section">
-                        <div className="header">
-                            <h2>Wedding Photographers</h2>
-                            <Link to={'/services/category/photographers'}><p>All Wedding Photographers</p></Link>
-                        </div>
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'photographer')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-
-                    {/* section Wedding Planners */}
-                    {/* <div className="wedding-planners-section section">
-                        <div className="header">
-                            <h2>Wedding Planners</h2>
-                            <Link to={'/services/category/wedding-planners'}><p>All Wedding Planners</p></Link>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'wedding-planners')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-
-                    {/* section Wedding Videographers */}
-                    {/* <div className="wedding-videographers-section section">
-                        <div className="header">
-                            <h2>Wedding Videographers</h2>
-                            <Link to={'/services/category/videographers'}><p>All Wedding Videographers</p></Link>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'videographers')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-
-                    {/* section Wedding Caterers */}
-                    {/* <div className="wedding-caterers-section section">
-                        <div className="header">
-                            <h2>Wedding Caterers</h2>
-                            <Link to={'/services/category/wedding-caterers'}><p>All Wedding Caterers</p></Link>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'catering')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-
-                    {/* section Wedding Entertainment */}
-                    {/* <div className="wedding-venues-section section">
-                        <div className="header">
-                            <h2>Wedding Entertainment</h2>
-                            <Link to={'/services/category/entertainment'}><p>All Wedding Entertainment</p></Link>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'Entertainment')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
-                
-                    {/* section Wedding makeup */}
-                    {/* <div className="wedding-venues-section section">
-                        <div className="header">
-                            <h2>Wedding MakeUP</h2>
-                        </div>
-
-                        <div className="cards">
-                            {myData.filter(service => service.category === 'makeup')
-                                .slice(0, 8)
-                                .map(service => ( 
-                                    <Service service={service} key={service.id} />
-                                ))}
-                        </div>
-                    </div> */}
 
                 </div>
             </section>
