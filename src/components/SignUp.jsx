@@ -29,7 +29,8 @@ function SignUp({ api_url }) {
                 email: data.email,
                 first_name: data.fname,
                 last_name: data.lname,
-                phone_number:data.phonenum,
+                phone_number: data.phonenum,
+                role: data.role ? "vendor" :"customer"
                 }),
             });
             const result = await response.json();
@@ -140,6 +141,12 @@ function SignUp({ api_url }) {
                         }
                         })} />
                     {errors.passwd2 && <span>{errors.passwd2.message}</span>}
+
+                    <div className='d-flex py-2 justify-content-center align-items-center'>
+                    <input type="checkbox" name="role" id="role" className="py-0 my-0 mx-2" value="False"
+                        {...register("role")} />
+                    <label htmlFor="role" className="">sign up as a vendor?</label>
+                    </div>
 
                     <button type="submit" onClick={scrollToTop}>Sign Up</button>
                 </form>

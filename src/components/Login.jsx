@@ -37,7 +37,16 @@ function Login({ api_url }) {
                 localStorage.setItem('lname', result.lname);
                 localStorage.setItem('email', result.email);
                 localStorage.setItem('username', result.username);
-                navigate('/services');
+                localStorage.setItem('role', result.role);
+                localStorage.setItem('user_id', result.id);
+                if (result.role == "customer") {
+                    // this user is a customer
+                    navigate('/services');
+                } else {
+                    // this user should be a vendor
+                    navigate('/services');
+
+                }
             } else {
                 console.error("Login Failed:", result);
                 alert(`Login Failed: Either the Email or the Password is incorrect`);

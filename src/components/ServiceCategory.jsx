@@ -8,18 +8,19 @@ import {SERVICES_CONFIG} from './categories.js';
 function ServiceCategory({api_url}) {
     const { type } = useParams();
     const config = SERVICES_CONFIG[type];
-    console.log(config)
+    // console.log(config)
     const [myData, setMyData] = useState([]);
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState("");
     const api = `${api_url}api/services/?category=`
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
             setIsLoading(true);
-            const res = await fetch(`${api}${config.slug}`);
+            const res = await fetch(`${api}${config.slug}&name=${search}`);
             try {
                 const data = await res.json();
+                console.log(data)
                 setMyData(data || []);
             } catch (err) {
                 console.error("error fetching data:", err);
@@ -30,7 +31,7 @@ function ServiceCategory({api_url}) {
         };
 
         getData();
-    }, [config.slug]);
+    }, [config.slug,search]);
 
     if (!config) return (
             <div className='container my-5 pt-5 text-center'>
@@ -42,11 +43,31 @@ function ServiceCategory({api_url}) {
                 <div className="py-4"> </div>
             </div>
         );
+    const scrollToTop = () => {
+        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
+    };
     if (isLoading) {
         return (
             <>
-            <section>
-                    <div className='container my-5 text-center'>
+            <section className='weddingVenue-section'>
+                <div className="container">
+                <h1>{config.title}</h1>
+                <div className="box">
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={(e) => (setSearch(e.target.value),{scrollToTop})}
+                        className="search-input"
+                    />
+
+                    <Link to="/services"  onClick={scrollToTop} >
+                        <button className='back-btn'>
+                            <i className="fa-solid fa-arrow-left"></i>
+                            Back
+                        </button>
+                    </Link>
+                        </div>
+                        <div className='container my-5 text-center'>
                         <div className='h1 py-3'>Loading Data...</div>
                         <div className="spinner-border text-primary" role="status">
                             <span className="visually-hidden">Loading...</span>
@@ -55,14 +76,13 @@ function ServiceCategory({api_url}) {
                         <div className="py-4"> </div>
                         <div className="py-4"> </div>
                         <div className="py-4"> </div>
-                    </div>
+                        </div>
+                        </div>
             </section>
             </>
         );
     }
-    const scrollToTop = () => {
-        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
-    };
+    
 
     return (
         <>

@@ -66,7 +66,72 @@ const CATEGORY_SECTIONS = [
         link: '/services/category/shoes',
         api: '?category=shoes'  
     },
-
+    { 
+        title: "DJ & Sound System", 
+        slug: "dj", 
+        link: '/services/category/dj',
+        api: '?category=dj'  
+    },
+    { 
+        title: "Live Band", 
+        slug: "band", 
+        link: '/services/category/band',
+        api: '?category=band'  
+    },
+    { 
+        title: "Lighting & Decor", 
+        slug: "lighting", 
+        link: '/services/category/lighting',
+        api: '?category=lighting'  
+    },
+    { 
+        title: "Zaffa Group", 
+        slug: "zaffa", 
+        link: '/services/category/zaffa',
+        api: '?category=zaffa'  
+    },
+    { 
+        title: "Luxury Car Rental", 
+        slug: "car_rental", 
+        link: '/services/category/car_rental',
+        api: '?category=car_rental'  
+    },
+    { 
+        title: "Bus Rental", 
+        slug: "bus_rental", 
+        link: '/services/category/bus_rental',
+        api: '?category=bus_rental'  
+    },
+    { 
+        title: "Florist", 
+        slug: "florist", 
+        link: '/services/category/florist',
+        api: '?category=florist'  
+    },
+    { 
+        title: "Invitations", 
+        slug: "invitations", 
+        link: '/services/category/invitations',
+        api: '?category=invitations'  
+    },
+    { 
+        title: "Wedding Cake", 
+        slug: "cake", 
+        link: '/services/category/cake',
+        api: '?category=cake'  
+    },
+    { 
+        title: "Henna Artist", 
+        slug: "henna", 
+        link: '/services/category/henna',
+        api: '?category=henna'  
+    },
+    { 
+        title: "Honeymoon Packages", 
+        slug: "honeymoon", 
+        link: '/services/category/honeymoon',
+        api: '?category=honeymoon'  
+    },
 ];
 export const SERVICES_CONFIG = {
     "wedding-venues": {
@@ -128,6 +193,61 @@ export const SERVICES_CONFIG = {
         title: "Shoes",
         placeholder: "Search Shoes...",
         slug: "shoes",
+    },
+    "dj":{ 
+        title: "DJ & Sound System", 
+        slug: "dj", 
+        placeholder: "Search DJ & Sound System...",
+    },
+    "band": { 
+        title: "Live Band", 
+        slug: "band", 
+        placeholder: "Search Live Band...",
+    },
+    "lighting": { 
+        title: "Lighting & Decor", 
+        slug: "lighting", 
+        placeholder: "Search Lighting & Decor...",
+    },
+    "zeffa": { 
+        title: "Zaffa Group", 
+        slug: "zaffa", 
+        placeholder: "Search Zaffa Group...",
+    },
+    "car_rental": { 
+        title: "Luxury Car Rental", 
+        slug: "car_rental", 
+        placeholder: "Search Luxury Car Rental...",
+    },
+    "bus_rental": { 
+        title: "Bus Rental", 
+        slug: "bus_rental", 
+        placeholder: "Search Bus Rental...",
+    },
+    "florist": { 
+        title: "Florist", 
+        slug: "florist", 
+        placeholder: "Search Florist...",
+    },
+    "invitations": { 
+        title: "Invitations", 
+        slug: "invitations", 
+        placeholder: "Search Invitations...",
+    },
+    "cake": { 
+        title: "Wedding Cake", 
+        slug: "cake", 
+        placeholder: "Search Wedding Cake...",
+    },
+    "henna": { 
+        title: "Henna Artist", 
+        slug: "henna", 
+        placeholder: "Search Henna Artist...",
+    },
+    "honeymoon": { 
+        title: "Honeymoon Packages", 
+        slug: "honeymoon", 
+        placeholder: "Search Honeymoon Packages...",
     },
 };
 export default CATEGORY_SECTIONS;
