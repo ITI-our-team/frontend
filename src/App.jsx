@@ -14,6 +14,7 @@ import ServiceDetails from './components/ServiceDetails';
 import ServiceCategory from './components/ServiceCategory';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import ChatBot from './components/ChatBot';
 
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
@@ -41,6 +42,7 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/signup" element={<SignUp api_url={api_url} />} />
 
       </Routes>
+      <ChatBot />
 
       <Footer />
     </>

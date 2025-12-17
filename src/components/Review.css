@@ -50,7 +50,7 @@
 /* ===== Custom Pagination (Dots) ===== */
 
 .swiper-pagination {
-  margin-top: 25px !important;  /* تنزل لتحت شوية */
+  margin-top: 25px !important;  
   position: relative;
 }
 

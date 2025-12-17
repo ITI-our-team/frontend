@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import './Hero.css'
+import { Link } from 'react-router-dom'
 
 function Hero() {
     const contentRef = useRef(null);
@@ -22,7 +23,8 @@ function Hero() {
                 <div className="hero-content" ref={contentRef}>
                     <h2>Plan, Style, Celebrate, With <span>Wedora ♡</span></h2>
                     <p>From dresses to decor, we cover all your wedding needs.</p>
-                    <button>Explore Services</button>
+                    <Link to='/services'><button>Explore Services</button></Link>
+                    
                 </div>
             </section>
         </>
