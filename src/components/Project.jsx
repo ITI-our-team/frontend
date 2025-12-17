@@ -1,4 +1,4 @@
-import "./Project.css";
+import "./project.css";
 import { Link } from 'react-router-dom';
 
 function Project() {

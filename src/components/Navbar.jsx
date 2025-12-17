@@ -1,14 +1,54 @@
 import './Navbar.css'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation,useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/userSlice.js";
 
-function Navbar() {
+function Navbar({api_url}) {
 
     const location = useLocation()
     const [open, setOpen] = useState(false)
 
     const menuRef = useRef(null)
     const btnRef = useRef(null)
+    const navigate = useNavigate();
+    const authToken = localStorage.getItem("userToken"); 
+    const dispatch = useDispatch();
+    const {username,isloggedin,role} = useSelector((state) => state.user);
+    async function btnlogout() {
+        let answer = confirm("log out ?")
+        if (!answer) { return }
+        const API_URL = `${api_url}api/user/logout/`;
+        let apiSuccess = false;
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${authToken}` 
+                },
+            });
+
+            if (response.ok || response.status === 200) {
+                console.log("API Logout successful.");
+                apiSuccess = true;
+            } else {
+                console.error("API Logout failed. Status:", response.status);
+            }
+        }
+        catch (error) {
+            console.error("Network error during API logout:", error);
+        } finally {
+            localStorage.clear();
+            dispatch(logout());   
+            navigate(`/`);
+            window.location.reload();
+
+            if (!apiSuccess) {
+                alert("Logout completed locally, but there was an error clearing the session on the server.");
+            }
+        }
+    }
 
     useEffect(() => {
         const nav = document.querySelector('.nav-section')
@@ -75,15 +115,32 @@ function Navbar() {
                             <Link to="/"><button>projects</button></Link>
                         </div>
                     </div>
-
-                    <div className="btns">
-                        <Link to="/login">
-                            <button className="sign-in">Sign in</button>
-                        </Link>
-                        <Link to="/signup">
-                            <button className="get-start">Get started</button>
-                        </Link>
-                    </div>
+                    {authToken ? (
+                        <>
+                            <div className="btns">
+                                {(role === "vendor") && (
+                                    <Link to="/dashboard"> 
+                                        {/* this button only shows for vendors accounts */}
+                                        <button className="sign-in">Dashboard</button>
+                                    </Link>
+                                )}
+                                    <Link to="/updateinfo"> 
+                                        {/* this button only shows for vendors accounts */}
+                                        <button className="sign-in">Update Info</button>
+                                    </Link>
+                                    <button className="btn" onClick={btnlogout}>Logout</button>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="btns">
+                            <Link to="/login">
+                                <button className="sign-in">Sign in</button>
+                            </Link>
+                            <Link to="/signup">
+                                <button className="get-start">Get started</button>
+                            </Link>
+                        </div>
+                    )}
 
                     <div
                         ref={btnRef}

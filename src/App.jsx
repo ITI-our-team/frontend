@@ -15,13 +15,15 @@ import ServiceCategory from './components/ServiceCategory';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import ChatBot from './components/ChatBot';
+import Dashboard from './components/Dashboard';
+import Updateuserinfo from './components/Updateuserinfo'
 
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
 
   return (
     <>
-      <Navbar />
+      <Navbar api_url={api_url}/>
 
       <Routes>
         <Route path='/' element={<>
@@ -40,9 +42,10 @@ const api_url = 'http://127.0.0.1:8000/';
         />
         <Route path="/login" element={<Login api_url={api_url} />} />
         <Route path="/signup" element={<SignUp api_url={api_url} />} />
-
+        <Route path="/dashboard" element={<Dashboard api_url={api_url} />}/>
+        <Route path="/updateinfo" element={<Updateuserinfo api_url={api_url} />}/>
       </Routes>
-      <ChatBot />
+      <ChatBot api_url={api_url}/>
 
       <Footer />
     </>

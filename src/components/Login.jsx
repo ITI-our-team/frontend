@@ -2,6 +2,8 @@ import { Link,useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import './Login.css'
+import { useDispatch } from "react-redux";
+import { login } from '../store/userSlice.js';
 
 function Login({ api_url }) {
     const navigate = useNavigate();
@@ -12,6 +14,8 @@ function Login({ api_url }) {
         // reset,
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
+    
+    const dispatch = useDispatch();
 
     async function myHandleSubmit(data) {
         setIsLoading(true);
@@ -39,12 +43,23 @@ function Login({ api_url }) {
                 localStorage.setItem('username', result.username);
                 localStorage.setItem('role', result.role);
                 localStorage.setItem('user_id', result.id);
+                localStorage.setItem('phone_number', result.phone_number);
+                dispatch(login({
+                    email: result.email,
+                    username: result.username,
+                    token: result.token,
+                    user_id: result.id,
+                    fname: result.fname,
+                    lname: result.lname,
+                    role:result.role,
+                    phone_number:result.phone_number
+                }));
                 if (result.role == "customer") {
                     // this user is a customer
                     navigate('/services');
                 } else {
                     // this user should be a vendor
-                    navigate('/services');
+                    navigate('/dashboard');
 
                 }
             } else {

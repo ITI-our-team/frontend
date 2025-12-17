@@ -21,7 +21,7 @@
     margin-bottom: 40px;
 }
 
-.login-box input {
+.login-box input ,.update_label{
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;

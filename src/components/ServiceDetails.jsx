@@ -26,7 +26,7 @@ function ServiceDetails({api_url}) {
             }
         };
         getService();
-    }, [api_url]);
+    }, [api_url,id]);
 
     // if (!service) return <p>Loading...</p>;
     if (isLoading) {
