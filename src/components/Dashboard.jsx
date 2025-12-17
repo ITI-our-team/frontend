@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-import { useForm } from "react-hook-form"
-import { update } from '../store/userSlice.js';
 import Service from './Service.jsx';
 import { Link } from 'react-router-dom';
 
@@ -15,9 +13,9 @@ function Dashboard({api_url}) {
     const [isLoading, setIsLoading] = useState(false);
     const [myData, setMyData] = useState([]);
     const authToken = localStorage.getItem("userToken"); 
-    const user_id = localStorage.getItem("user_id"); 
+    // const user_id = localStorage.getItem("user_id"); 
     const user = useSelector((state) => state.user);
-    async function getservices(data) {
+    async function getservices() {
         setIsLoading(true);
         const API_URL = `${api_url}api/services/?vendor=${user.username}`;
         try {
@@ -49,7 +47,7 @@ function Dashboard({api_url}) {
             return;
         }
         getservices();
-    }, [api_url, authToken, navigate]);
+    }, [authToken,user.username, navigate]);
     
     if (isLoading) {
         return (
@@ -70,8 +68,9 @@ function Dashboard({api_url}) {
     return (
         <section className='weddingVenue-section'>
             <div className="container">
-                <h1 className='text-center'>this is the services we have for this vendor</h1>
-                <button className='btn btn-info my-4'> 
+                <h1 className='text-center'>welcome {user.username}</h1>
+                <h3 className='text-center'>you can view your services or add new one </h3>
+                <button className='btn btn-info my-4' onClick={scrollToTop}> 
                     <Link to="/newservice"> Add a new Service </Link>
                 </button>
                 <div className="cards">

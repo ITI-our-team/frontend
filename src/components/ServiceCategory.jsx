@@ -31,7 +31,7 @@ function ServiceCategory({api_url}) {
         };
 
         getData();
-    }, [config.slug,search]);
+    }, [config.slug,api,search]);
 
     if (!config) return (
             <div className='container my-5 pt-5 text-center'>

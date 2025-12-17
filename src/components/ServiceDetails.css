@@ -22,6 +22,10 @@
 .img-details img {
     width: 100%;
 }
+.more-details{
+    display: flex;
+    flex-direction: column;
+}
 
 
 

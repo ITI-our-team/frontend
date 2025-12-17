@@ -14,7 +14,7 @@ function Navbar({api_url}) {
     const navigate = useNavigate();
     const authToken = localStorage.getItem("userToken"); 
     const dispatch = useDispatch();
-    const {username,isloggedin,role} = useSelector((state) => state.user);
+    const {username,role} = useSelector((state) => state.user);
     async function btnlogout() {
         let answer = confirm("log out ?")
         if (!answer) { return }
@@ -115,7 +115,7 @@ function Navbar({api_url}) {
                             <Link to="/"><button>projects</button></Link>
                         </div>
                     </div>
-                    {authToken ? (
+                    {username ? (
                         <>
                             <div className="btns">
                                 {(role === "vendor") && (
