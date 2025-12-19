@@ -2,8 +2,11 @@ import { Link,useNavigate } from 'react-router-dom'
 import './Login.css'
 import { useForm } from "react-hook-form"
 import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function SignUp({ api_url }) {
+    const [showPass1, setShowPass1] = useState(false);
+    const [showPass2, setShowPass2] = useState(false);
     const navigate = useNavigate();
     const {
         register,watch,
@@ -91,61 +94,110 @@ function SignUp({ api_url }) {
                 Sign Up to discover beautiful venues, vendors, and everything you need</p>
 
 
-                <form onSubmit={handleSubmit(myHandleSubmit)} className='col-md-8 col-12 signupform'>
-                    <input type="text" placeholder="Username"
-                        {...register("username",
-                        {
-                        required: "Username can't be empty",
-                        pattern: {
-                            value: /^[\w.@+-]+/i,
-                            message:"Enter a valid username. This value may contain only letters, numbers, and @/./+/-/_ characters."
-                        }
-                        })} />
-                    {errors.username && <span>{errors.username.message}</span>}
+                <form onSubmit={handleSubmit(myHandleSubmit)} className='col-md-10 col-12 signupform'>
+                    <div className="form-group">
+                        <label htmlFor="reg_username">Username *</label>
+                        <input 
+                            id="reg_username"
+                            type="text" 
+                            placeholder="Choose a username"
+                            {...register("username", {
+                                required: "Username can't be empty",
+                                pattern: {
+                                    value: /^[\w.@+-]+/i,
+                                    message: "Enter a valid username (Letters, numbers, and @/./+/-/_ only)."
+                                }
+                            })} 
+                        />
+                        {errors.username && <span className="error-text">{errors.username.message}</span>}
+                    </div>
 
-                    <input type="text" placeholder="First Name" {...register("fname")}/>
-                    <input type="text" placeholder="Last Name" {...register("lname")} />
-                    
-                    <input type="email" placeholder="Email"
-                        {...register("email", {
-                            required: "email can't be empty",
-                        pattern:{
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                            message:"Invalid email address format"
-                        }
-                        })}/>
-                    {errors.email && <span>{errors.email.message}</span>}
+                    <div className="two-inputs">
+                        <div className="form-group">
+                            <label htmlFor="fname">First Name</label>
+                            <input id="fname" type="text" placeholder="First Name" {...register("fname")} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="lname">Last Name</label>
+                            <input id="lname" type="text" placeholder="Last Name" {...register("lname")} />
+                        </div>
+                    </div>
 
-                    <input type="text" placeholder="Phone Number"
-                        {...register("phonenum",
-                        {
-                        required: "Phone Number can't be Empty",
-                        pattern: {
-                            value: /^01[0-2,5]{1}[0-9]{8}$/i,
-                            message:"Invalid Egyptian phone number."
-                    }
-                        })} />
-                    {errors.phonenum && <span>{errors.phonenum.message}</span>}
+                    <div className="form-group">
+                        <label htmlFor="reg_email">Email Address *</label>
+                        <input 
+                            id="reg_email"
+                            type="email" 
+                            placeholder="mail@example.com"
+                            {...register("email", {
+                                required: "Email can't be empty",
+                                pattern: {
+                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                    message: "Invalid email address format"
+                                }
+                            })} 
+                        />
+                        {errors.email && <span className="error-text">{errors.email.message}</span>}
+                    </div>
 
-                    <input type="password" placeholder="Password"
-                        {...register("passwd1", { required: "Password can't be empty", })} />
-                    {errors.passwd1 && <span>{errors.passwd1.message}</span>}
+                    <div className="form-group">
+                        <label htmlFor="phonenum">Egyptian Phone Number *</label>
+                        <input 
+                            id="phonenum"
+                            type="text" 
+                            placeholder="01xxxxxxxxx"
+                            {...register("phonenum", {
+                                required: "Phone Number can't be Empty",
+                                pattern: {
+                                    value: /^01[0-2,5]{1}[0-9]{8}$/i,
+                                    message: "Invalid Egyptian phone number."
+                                }
+                            })} 
+                        />
+                        {errors.phonenum && <span className="error-text">{errors.phonenum.message}</span>}
+                    </div>
 
-                    <input type="password" placeholder="Confirm Password"
-                        {...register("passwd2", {
-                        required: "Password confirmation can't be empty",
-                        validate: (val) => {
-                            if (watch('passwd1') != val) {
-                            return "Your passwords do no match";
-                            }
-                        }
-                        })} />
-                    {errors.passwd2 && <span>{errors.passwd2.message}</span>}
+                    <div className="form-group">
+                        <label htmlFor="passwd1">Password *</label>
+                        <div className="input-container">
+                            <input 
+                                id="passwd1"
+                                type={showPass1 ? "text" : "password"} 
+                                {...register("passwd1", { required: "Password can't be empty" })} 
+                            />
+                            <span className="toggle-icon" onClick={() => setShowPass1(!showPass1)}>
+                                {showPass1 ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
+                        {errors.passwd1 && <span className="error-text">{errors.passwd1.message}</span>}
+                    </div>
 
-                    <div className='d-flex py-2 justify-content-center align-items-center'>
-                    <input type="checkbox" name="role" id="role" className="py-0 my-0 mx-2" value="False"
-                        {...register("role")} />
-                    <label htmlFor="role" className="">sign up as a vendor?</label>
+                    <div className="form-group">
+                        <label htmlFor="passwd2">Confirm Password *</label>
+                        <div className="input-container">
+                            <input 
+                                id="passwd2"
+                                type={showPass2 ? "text" : "password"} 
+                                {...register("passwd2", {
+                                    required: "Password confirmation can't be empty",
+                                    validate: (val) => watch('passwd1') === val || "Your passwords do not match"
+                                })} 
+                            />
+                            <span className="toggle-icon" onClick={() => setShowPass2(!showPass2)}>
+                                {showPass2 ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
+                        {errors.passwd2 && <span className="error-text">{errors.passwd2.message}</span>}
+                    </div>
+
+                    <div className='d-flex py-3 justify-content-center align-items-center vendor-toggle'>
+                        <input 
+                            type="checkbox" 
+                            id="role" 
+                            className="mx-2" 
+                            {...register("role")} 
+                        />
+                        <label htmlFor="role" className="mb-0">Sign up as a vendor?</label>
                     </div>
 
                     <button type="submit" onClick={scrollToTop}>Sign Up</button>

@@ -2,10 +2,14 @@ import { useState } from 'react';
 import './Form.css'
 
 function Form() {
+    const stored_email = localStorage.getItem("email"); 
+    const stored_fname = localStorage.getItem('fname');
+    const stored_lname = localStorage.getItem('lname');
+
     const [formData, setFormData] = useState({
-        email: '',
-        firstName: '',
-        lastName: '',
+        email: stored_email || '',
+        firstName: stored_fname || '',
+        lastName: stored_lname || '',
         weddingDate: '',
         message: ''
     });

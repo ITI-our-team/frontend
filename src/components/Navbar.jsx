@@ -1,8 +1,8 @@
 import './Navbar.css'
 import { Link, useLocation,useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../store/userSlice.js";
+// import { useSelector, useDispatch } from "react-redux";
+// import { logout } from "../store/userSlice.js";
 
 function Navbar({api_url}) {
 
@@ -12,9 +12,11 @@ function Navbar({api_url}) {
     const menuRef = useRef(null)
     const btnRef = useRef(null)
     const navigate = useNavigate();
-    const authToken = localStorage.getItem("userToken"); 
-    const dispatch = useDispatch();
-    const {username,role} = useSelector((state) => state.user);
+    const userToken = localStorage.getItem("userToken"); 
+    const username = localStorage.getItem("username"); 
+    const role = localStorage.getItem("role"); 
+    // const dispatch = useDispatch();
+    // const {username,role} = useSelector((state) => state.user);
     async function btnlogout() {
         let answer = confirm("log out ?")
         if (!answer) { return }
@@ -25,7 +27,7 @@ function Navbar({api_url}) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Token ${authToken}` 
+                    'Authorization': `Token ${userToken}` 
                 },
             });
 
@@ -40,7 +42,7 @@ function Navbar({api_url}) {
             console.error("Network error during API logout:", error);
         } finally {
             localStorage.clear();
-            dispatch(logout());   
+            // dispatch(logout());   
             navigate(`/`);
             window.location.reload();
 

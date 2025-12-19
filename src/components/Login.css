@@ -24,7 +24,7 @@
 .login-box input ,.update_label{
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     border-radius: 8px;
     border: 1px solid #ddd;
 }
@@ -54,4 +54,51 @@
 }
 #role{
     width: auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.error-text {
+    color: #d9534f;
+    font-size: 0.95rem;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container input {
+    width: 100%;
+    padding-right: 45px; /* Leave space for the button */
+}
+
+.password-toggle-btn, .toggle-icon {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 0.8rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle-btn:hover {
+    color: #007bff;
+}
+.leaflocation_minimap{
+    height: 300px;
+    width: 100%;
+    margin-block: 20px;
+    border-Radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ccc
 }

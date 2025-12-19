@@ -1,24 +1,21 @@
 import React from 'react'
 import { useState,useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom'
-import { update } from '../store/userSlice.js';
 
 function Dashboard({api_url}) {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const scrollToTop = () => {
-        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
-    };
     const [formData, setFormData] = useState({
         username: '',
         first_name: '',
         last_name: '',
     });
     const [isLoading, setIsLoading] = useState(false);
-    const authToken = localStorage.getItem("userToken"); 
-    const user = useSelector((state) => state.user);
-    async function Getuserdata(data) {
+    const userToken = localStorage.getItem("userToken"); 
+    const email = localStorage.getItem("email"); 
+    const phone_number = localStorage.getItem("phone_number"); 
+
+    // const user = useSelector((state) => state.user);
+    async function Getuserdata() {
         setIsLoading(true);
         const API_URL = `${api_url}api/user/profile/`;
         try {
@@ -26,7 +23,7 @@ function Dashboard({api_url}) {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${authToken}` 
+                'Authorization': `Token ${userToken}` 
                 }
             });
             const result = await response.json();
@@ -50,12 +47,12 @@ function Dashboard({api_url}) {
         }
     }
     useEffect(() => {
-        if (!authToken) {
+        if (!userToken) {
             navigate('/login');
             return;
         }
         Getuserdata();
-    }, [api_url, authToken, navigate]);
+    }, [api_url, userToken]);
     
     const handleChange = (e) => {
         setFormData({
@@ -76,19 +73,18 @@ function Dashboard({api_url}) {
                 method: 'PATCH',
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${authToken}` 
+                'Authorization': `Token ${userToken}` 
                 },
                 body: JSON.stringify(formData),
             });
             const result = await response.json();
+            console.log(result);
             if (response.ok) {
                 alert("Information Updates successfully!");
                 console.log(result);
-                dispatch(update({
-                    username: formData.username,
-                    first_name: formData.first_name,
-                    last_name: formData.last_name,
-                }));
+                localStorage.setItem('fname', formData.first_name);
+                localStorage.setItem('lname', formData.last_name);
+                localStorage.setItem('username', formData.username);
             } else {
                 console.error("profile data update Failed:", result);
                 console.error("Update Failed:", result);
@@ -122,18 +118,55 @@ function Dashboard({api_url}) {
         <div className="login-box">
             <h1 className='text-center'>this is the data we have for this user</h1>
             <form onSubmit={updatedata} className='col-md-8 col-12 signupform'>
-                    <input type="text" value={formData.username}
-                        onChange={handleChange} id="username"
+                    <div className="form-group mb-3">
+                        <label htmlFor="username">Username</label>
+                        <input 
+                            type="text" 
+                            value={formData.username}
+                            onChange={handleChange} 
+                            id="username"
+                            placeholder="Username"
                         />
-                    <label className='update_label'>{user.email}</label>
+                    </div>
 
-                    <input type="text" value={formData.first_name}
-                        onChange={handleChange} id="first_name"
-                    />
-                    <input type="text" value={formData.last_name}
-                        onChange={handleChange} id="last_name"
-                    />
-                    <label className='update_label'>{user.phone_number}</label>
+                    <div className="form-group mb-3">
+                        <label>Account Email (Non-editable)</label>
+                        <div className='update_label p-2 border rounded bg-light'>
+                            {email}
+                        </div>
+                    </div>
+
+                    <div className="two-inputs">
+                        <div className="form-group">
+                            <label htmlFor="first_name">First Name</label>
+                            <input 
+                                type="text" 
+                                value={formData.first_name}
+                                onChange={handleChange} 
+                                id="first_name"
+                                placeholder="First Name"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="last_name">Last Name</label>
+                            <input 
+                                type="text" 
+                                value={formData.last_name}
+                                onChange={handleChange} 
+                                id="last_name"
+                                placeholder="Last Name"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group mb-4">
+                        <label>Phone Number (Non-editable)</label>
+                        <div className='update_label p-2 border rounded bg-light'>
+                            {phone_number}
+                        </div>
+                    </div>
+                    
                     <button type="submit">Update information</button>
                 </form>
             <div className="col-3 mx-auto mt-2 ">
