@@ -18,6 +18,7 @@ import ChatBot from './components/ChatBot';
 import Dashboard from './components/Dashboard';
 import Updateuserinfo from './components/Updateuserinfo';
 import Newservice from './components/Newservice';
+import EditService from './components/Editservice';
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
 
@@ -45,6 +46,7 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/dashboard" element={<Dashboard api_url={api_url} />}/>
         <Route path="/updateinfo" element={<Updateuserinfo api_url={api_url} />} />
         <Route path="/newservice" element={<Newservice api_url={api_url} />}/>
+        <Route path="/editservice/:id" element={<EditService api_url={api_url} />}/>
       </Routes>
       <ChatBot api_url={api_url}/>
 

@@ -2,10 +2,12 @@ import { Link,useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import './Login.css'
-import { useDispatch } from "react-redux";
-import { login } from '../store/userSlice.js';
+// import { useDispatch } from "react-redux";
+// import { login } from '../store/userSlice.js';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login({ api_url }) {
+    const [showPass, setShowPass] = useState(false);
     const navigate = useNavigate();
     const {
         register,
@@ -15,7 +17,7 @@ function Login({ api_url }) {
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
     
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     async function myHandleSubmit(data) {
         setIsLoading(true);
@@ -44,16 +46,18 @@ function Login({ api_url }) {
                 localStorage.setItem('role', result.role);
                 localStorage.setItem('user_id', result.id);
                 localStorage.setItem('phone_number', result.phone_number);
-                dispatch(login({
-                    email: result.email,
-                    username: result.username,
-                    token: result.token,
-                    user_id: result.id,
-                    fname: result.fname,
-                    lname: result.lname,
-                    role:result.role,
-                    phone_number:result.phone_number
-                }));
+                localStorage.setItem('isLoggedIn', true);
+                // dispatch(login({
+                //     email: result.email,
+                //     username: result.username,
+                //     token: result.token,
+                //     user_id: result.id,
+                //     fname: result.fname,
+                //     lname: result.lname,
+                //     role:result.role,
+                //     phone_number:result.phone_number
+                // }));
+                // let's try to save in local storage for now 
                 if (result.role == "customer") {
                     // this user is a customer
                     navigate('/services');
@@ -96,13 +100,33 @@ function Login({ api_url }) {
                 <p>Welcome to your wedding journey.<br/>
                 Log in to discover beautiful venues, vendors, and everything you need</p>
 
-                <form onSubmit={handleSubmit(myHandleSubmit)}>
-                    <input type="text" placeholder="Username"
-                        {...register("username", { required: "Username can't be empty", })} />
-                        {errors.username && <span>{errors.username.message}</span>}
-                    <input type="password" placeholder="Password"
-                        {...register("passwd", { required: "Password can't be empty", })} />
-                        {errors.passwd && <span>{errors.passwd.message}</span>}
+                <form onSubmit={handleSubmit(myHandleSubmit)} className="login-form">
+                    <div className="form-group mb-3">
+                        <label htmlFor="login_username">Username</label>
+                        <input 
+                            id="login_username"
+                            type="text" 
+                            placeholder="Username"
+                            {...register("username", { required: "Username can't be empty" })} 
+                        />
+                        {errors.username && <span className="error-text">{errors.username.message}</span>}
+                    </div>
+
+                    <div className="form-group mb-3 password-wrapper">
+                        <label htmlFor="login_password">Password</label>
+                        <div className="input-container">
+                            <input 
+                                id="login_password"
+                                type={showPass ? "text" : "password"} 
+                                {...register("passwd", { required: "Password can't be empty" })} 
+                            />
+                            <span className="toggle-icon" onClick={() => setShowPass(!showPass)}>
+                                {showPass ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
+                        {errors.passwd && <span className="error-text">{errors.passwd.message}</span>}
+                    </div>
+
                     <button type="submit">Login</button>
                 </form>
 

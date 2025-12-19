@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState,useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import Service from './Service.jsx';
 import { Link } from 'react-router-dom';
@@ -12,18 +11,17 @@ function Dashboard({api_url}) {
     };
     const [isLoading, setIsLoading] = useState(false);
     const [myData, setMyData] = useState([]);
-    const authToken = localStorage.getItem("userToken"); 
-    // const user_id = localStorage.getItem("user_id"); 
-    const user = useSelector((state) => state.user);
+    const userToken = localStorage.getItem("userToken"); 
+    const username = localStorage.getItem("username"); 
     async function getservices() {
         setIsLoading(true);
-        const API_URL = `${api_url}api/services/?vendor=${user.username}`;
+        const API_URL = `${api_url}api/services/?vendor=${username}`;
         try {
             const response = await fetch(API_URL, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${authToken}` 
+                'Authorization': `Token ${userToken}` 
                 }
             });
             const result = await response.json();
@@ -42,12 +40,12 @@ function Dashboard({api_url}) {
         }
     }
     useEffect(() => {
-        if (!authToken) {
+        if (!userToken) {
             navigate('/login');
             return;
         }
         getservices();
-    }, [authToken,user.username, navigate]);
+    }, [userToken,username,api_url,navigate]);
     
     if (isLoading) {
         return (
@@ -68,7 +66,7 @@ function Dashboard({api_url}) {
     return (
         <section className='weddingVenue-section'>
             <div className="container">
-                <h1 className='text-center'>welcome {user.username}</h1>
+                <h1 className='text-center'>welcome {username}</h1>
                 <h3 className='text-center'>you can view your services or add new one </h3>
                 <button className='btn btn-info my-4' onClick={scrollToTop}> 
                     <Link to="/newservice"> Add a new Service </Link>
