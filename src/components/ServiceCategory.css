@@ -62,3 +62,18 @@
 .back-btn i{
     padding-right: 10px;
 }
+
+.more-details h5{
+color: var(--color-primary);
+}
+.more-details p{
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: var(--color-secondary);
+}
+
+
+
+
+

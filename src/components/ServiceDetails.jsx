@@ -136,6 +136,13 @@ function ServiceDetails({api_url}) {
                         </div>
                     </div>
 
+                    <Link to="/services" >
+                        <button className='back-btn'>
+                            <i className="fa-solid fa-arrow-left"></i>
+                            Back
+                        </button>
+                    </Link>
+
                 </div>
             </section>
         </>
