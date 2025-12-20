@@ -19,6 +19,8 @@ import Dashboard from './components/Dashboard';
 import Updateuserinfo from './components/Updateuserinfo';
 import Newservice from './components/Newservice';
 import EditService from './components/Editservice';
+import ScrollToTopButton from "./components/ScrollToTopButton";
+
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
 
@@ -48,6 +50,8 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/newservice" element={<Newservice api_url={api_url} />}/>
         <Route path="/editservice/:id" element={<EditService api_url={api_url} />}/>
       </Routes>
+
+      <ScrollToTopButton />
       <ChatBot api_url={api_url}/>
 
       <Footer />

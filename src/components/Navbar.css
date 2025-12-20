@@ -148,7 +148,7 @@ nav {
     .mobile-menu-btn span {
         width: 25px;
         height: 3px;
-        background: var(--color-primary);
+        background-color: whitesmoke;
         border-radius: 5px;
     }
 
@@ -176,5 +176,9 @@ nav {
         padding: 10px;
         text-align: center;
         border-radius: 6px;
+    }
+
+    .nav-section.scrolled .logo p {
+        font-size: 24px ;
     }
 }

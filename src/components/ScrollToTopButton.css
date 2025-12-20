@@ -1,0 +1,32 @@
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #795548;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    background-color: #8e6b5f;
+    transform: translateY(-3px);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+
+    .scroll-top-btn {
+        bottom: 50px;
+        left: 35px;
+    }
+
+}
+

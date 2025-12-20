@@ -63,14 +63,55 @@
     padding-right: 10px;
 }
 
-.more-details h5{
-color: var(--color-primary);
+/* responsive */
+@media (max-width: 768px) {
+.weddingVenue-section{
+    padding: 100px 0;
+    background-color: var(--color-bg-local);
 }
-.more-details p{
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-weight: 400;
-    color: var(--color-secondary);
+
+.weddingVenue-section h1{
+    font-size: 28px;
+    padding: 20px
+}
+
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 40px;
+    align-items: center;
+}
+
+
+.search-input{
+    width: 70%;
+    font-size: 12px;
+}
+
+.search-input::placeholder {
+    color: var(--color-gold);
+}
+
+.search-input:focus{
+    background-color: #a6886862;
+}
+
+.back-btn{
+        width: 85px;
+        font-size: 14px;
+        padding: 5px;
+}
+
+.back-btn:hover{
+    background-color: var(--color-btn-hover);
+}
+
+.back-btn i{
+    padding-right: 10px;
+}
+
+
 }
 
 
