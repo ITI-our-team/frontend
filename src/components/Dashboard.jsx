@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Dashboard({api_url}) {
     const navigate = useNavigate();
+    const [bookings, setBookings] = useState([]);
     const scrollToTop = () => {
         window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
     };
@@ -39,14 +40,54 @@ function Dashboard({api_url}) {
             setIsLoading(false); 
         }
     }
-    useEffect(() => {
-        if (!userToken) {
-            navigate('/login');
-            return;
+    async function getbookings() {
+        const API_URL = `${api_url}api/bookings/`;
+        const response = await fetch(API_URL, {
+            headers: { 'Authorization': `Token ${userToken}` }
+        });
+        const result = await response.json();
+        if (response.ok) setBookings(result || []);
+    }
+
+    // Handle Status Updates (Confirm/Cancel/Complete)
+    async function updateBookingStatus(bookingId, newStatus) {
+        const API_URL = `${api_url}api/bookings/${bookingId}/update-status/`;
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userToken}`
+                },
+                body: JSON.stringify({ status: newStatus })
+            });
+            if (response.ok) {
+                alert(`Booking updated to ${newStatus}`);
+                getbookings(); // Refresh the list
+            } else {
+                const err = await response.json();
+                alert(err.error || "Failed to update status");
+            }
+        } catch (error) {
+            console.error("Error updating status:", error);
         }
-        getservices();
-    }, [userToken,username,api_url,navigate]);
-    
+    }
+
+    useEffect(() => {
+        if (!userToken) { navigate('/login'); return; }
+        setIsLoading(true);
+        Promise.all([getservices(), getbookings()]).finally(() => setIsLoading(false));
+    }, [userToken, api_url]);
+
+    // Helper to style status badges
+    const getStatusClass = (status) => {
+        switch(status) {
+            case 'confirmed': return 'badge bg-success';
+            case 'cancelled': return 'badge bg-danger';
+            case 'completed': return 'badge bg-secondary';
+            default: return 'badge bg-warning text-dark';
+        }
+    };
     if (isLoading) {
         return (
             <section className='container my-5 text-center'>
@@ -66,8 +107,45 @@ function Dashboard({api_url}) {
     return (
         <section className='weddingVenue-section'>
             <div className="container">
+                <h1 className='text-center mt-4'>Vendor Dashboard</h1>
                 <h1 className='text-center'>welcome {username}</h1>
-                <h3 className='text-center'>you can view your services or add new one </h3>
+                <div className="bookings-section my-5">
+                    <h2 className='mb-4'>Recent Booking Requests</h2>
+                    <div className="table-responsive bg-white p-3 rounded shadow-sm">
+                        <table className="table table-hover align-middle">
+                            <thead className="table-striped">
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {bookings.length > 0 ? bookings.map(book => (
+                                    <tr key={book.id}>
+                                        <td><strong>{book.service_name}</strong></td>
+                                        <td>{book.booking_date}</td>
+                                        <td>{book.start_time} - {book.end_time}</td>
+                                        <td><span className={getStatusClass(book.status)}>{book.status}</span></td>
+                                        <td>
+                                            {book.status === 'pending' && (
+                                                <div className="btn-group btn-group-sm">
+                                                    <button onClick={() => updateBookingStatus(book.id, 'confirmed')} className="btn btn-outline-success">Confirm</button>
+                                                    <button onClick={() => updateBookingStatus(book.id, 'cancelled')} className="btn btn-outline-danger">Cancel</button>
+                                                </div>
+                                            )}
+                                            {book.status === 'confirmed' && (
+                                                <button onClick={() => updateBookingStatus(book.id, 'completed')} className="btn btn-sm btn-outline-primary">Mark Completed</button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                )) : <tr><td colSpan="5" className="text-center">No bookings found.</td></tr>}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <button className='btn btn-info my-4' onClick={scrollToTop}> 
                     <Link to="/newservice"> Add a new Service </Link>
                 </button>

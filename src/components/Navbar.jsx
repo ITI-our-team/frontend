@@ -130,7 +130,7 @@ function Navbar({api_url}) {
                                         {/* this button only shows for vendors accounts */}
                                         <button className="sign-in">Update Info</button>
                                     </Link>
-                                    <button className="btn" onClick={btnlogout}>Logout</button>
+                                    <button className="btn text-light" onClick={btnlogout}>Logout</button>
                             </div>
                         </>
                     ) : (

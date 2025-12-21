@@ -25,7 +25,7 @@ function ServiceDetails({api_url}) {
             try {
                 const data = await res.json();
                 setService(data);
-                // console.log(data.images)
+                console.log(data)
             } catch (err) {
                 console.error("error fetching data:", err);
                 setService([]);
@@ -97,7 +97,12 @@ function ServiceDetails({api_url}) {
                         <div className="img-details">
                             <img src={service.thumbnail} alt={service.name} />
                         </div>
-                        {role=="vendor"? <></>:<Form />}
+                        {/* {role == "vendor" ? <></> : <Form />} */}
+                        {role == "customer" ? <Form service={service} api_url={api_url} /> :
+                            <>
+                                <h5>please use a customer account to make a booking</h5>
+                            </>}
+                        
                     </div>
                     <div className="details-hero flex-wrap">
                         <div className="more-details col-md-6 col-12">
