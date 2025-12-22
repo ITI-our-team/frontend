@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Service from './Service.jsx';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 function Dashboard({api_url}) {
     const navigate = useNavigate();
@@ -32,21 +33,32 @@ function Dashboard({api_url}) {
                 setMyData(result || []);
             } else {
                 console.error("profile data loading Failed:", result);
+                toast.error("Failed to load your services.");
             }
         } catch (error) {
             console.error("Network Error:", error);
-            alert("A network error occurred. Please try again.");
+            // alert("A network error occurred. Please try again.");
+            toast.error("A network error occurred while fetching services.");
         } finally {
             setIsLoading(false); 
         }
     }
     async function getbookings() {
         const API_URL = `${api_url}api/bookings/`;
-        const response = await fetch(API_URL, {
-            headers: { 'Authorization': `Token ${userToken}` }
-        });
-        const result = await response.json();
-        if (response.ok) setBookings(result || []);
+        try {
+            const response = await fetch(API_URL, {
+                headers: { 'Authorization': `Token ${userToken}` }
+            });
+            const result = await response.json();
+            if (response.ok) {
+                setBookings(result || []);
+            } else {
+                toast.error("Could not refresh bookings list.");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Network error while loading bookings.");
+        }
     }
 
     // Handle Status Updates (Confirm/Cancel/Complete)
@@ -62,14 +74,15 @@ function Dashboard({api_url}) {
                 body: JSON.stringify({ status: newStatus })
             });
             if (response.ok) {
-                alert(`Booking updated to ${newStatus}`);
+                toast.success(`Booking updated to ${newStatus}`);
                 getbookings(); // Refresh the list
             } else {
                 const err = await response.json();
-                alert(err.error || "Failed to update status");
+                toast.error(err.error || "Failed to update status");
             }
         } catch (error) {
             console.error("Error updating status:", error);
+            toast.error("Network error. Update failed.");
         }
     }
 
@@ -125,7 +138,11 @@ function Dashboard({api_url}) {
                             <tbody>
                                 {bookings.length > 0 ? bookings.map(book => (
                                     <tr key={book.id}>
-                                        <td><strong>{book.service_name}</strong></td>
+                                        <td>
+                                            <Link to={`/bookings/${book.id}`} className="text-decoration-none fw-bold">
+                                            {book.service_name}
+                                            </Link>
+                                        </td>
                                         <td>{book.booking_date}</td>
                                         <td>{book.start_time} - {book.end_time}</td>
                                         <td><span className={getStatusClass(book.status)}>{book.status}</span></td>

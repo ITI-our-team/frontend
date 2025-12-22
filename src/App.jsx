@@ -20,6 +20,9 @@ import Updateuserinfo from './components/Updateuserinfo';
 import Newservice from './components/Newservice';
 import EditService from './components/Editservice';
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import BookingDetails from "./components/BookingDetails"
+import MyBookings from "./components/MyBookings"
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
@@ -27,7 +30,17 @@ const api_url = 'http://127.0.0.1:8000/';
   return (
     <>
       <Navbar api_url={api_url}/>
-
+      <Toaster position="top-right" reverseOrder={true} 
+        containerStyle={{
+          top: 90, left: 20, bottom: 20, right: 20,
+        }}
+        toastOptions={{
+          duration: 4000,
+          style: {
+            zIndex: 9999,
+          },
+        }}
+      />
       <Routes>
         <Route path='/' element={<>
           <Hero />
@@ -48,7 +61,9 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/dashboard" element={<Dashboard api_url={api_url} />}/>
         <Route path="/updateinfo" element={<Updateuserinfo api_url={api_url} />} />
         <Route path="/newservice" element={<Newservice api_url={api_url} />}/>
-        <Route path="/editservice/:id" element={<EditService api_url={api_url} />}/>
+        <Route path="/editservice/:id" element={<EditService api_url={api_url} />} />
+        <Route path="/bookings/:id" element={<BookingDetails api_url={api_url} />} />
+        <Route path="/my-bookings" element={<MyBookings api_url={api_url} />} />
       </Routes>
 
       <ScrollToTopButton />

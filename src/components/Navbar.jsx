@@ -1,8 +1,7 @@
 import './Navbar.css'
 import { Link, useLocation,useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
-// import { useSelector, useDispatch } from "react-redux";
-// import { logout } from "../store/userSlice.js";
+import toast from 'react-hot-toast'
 
 function Navbar({api_url}) {
 
@@ -15,11 +14,31 @@ function Navbar({api_url}) {
     const userToken = localStorage.getItem("userToken"); 
     const username = localStorage.getItem("username"); 
     const role = localStorage.getItem("role"); 
-    // const dispatch = useDispatch();
-    // const {username,role} = useSelector((state) => state.user);
-    async function btnlogout() {
-        let answer = confirm("log out ?")
-        if (!answer) { return }
+    function btnlogout() {
+        toast((t) => (
+            <span className="text-center">
+                <b>Logging out?</b> We'll miss you!
+                <div className="d-flex gap-2 mt-2 justify-content-center">
+                    <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => {
+                            toast.dismiss(t.id);
+                            executeLogout();
+                        }}
+                    >
+                        Yes, Logout
+                    </button>
+                    <button
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => toast.dismiss(t.id)}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </span>
+        ), { position: 'top-center', duration: 5000 });
+    }
+    async function executeLogout() {
         const API_URL = `${api_url}api/user/logout/`;
         let apiSuccess = false;
         try {
@@ -42,7 +61,7 @@ function Navbar({api_url}) {
             console.error("Network error during API logout:", error);
         } finally {
             localStorage.clear();
-            // dispatch(logout());   
+            toast.success("Successfully logged out!");
             navigate(`/`);
             window.location.reload();
 
@@ -126,6 +145,11 @@ function Navbar({api_url}) {
                                         <button className="sign-in">Dashboard</button>
                                     </Link>
                                 )}
+                                {role === "customer" && (
+                                    <Link to="/my-bookings">
+                                        <button className="sign-in">My Bookings</button>
+                                    </Link>
+                                )}
                                     <Link to="/updateinfo"> 
                                         {/* this button only shows for vendors accounts */}
                                         <button className="sign-in">Update Info</button>
@@ -165,10 +189,21 @@ function Navbar({api_url}) {
 
                     <hr />
 
-                    <Link to="/login" onClick={() => setOpen(false)}>Sign in</Link>
-                    <Link to="/signup" className="signup" onClick={() => setOpen(false)}>
-                        Get started
-                    </Link>
+                    {username ? (
+                        <>
+                            <p className="px-3 small text-muted">Welcome, {username}</p>
+                            {role === 'vendor' && <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>}
+                            <Link to="/updateinfo" onClick={() => setOpen(false)}>My Profile</Link>
+                            <button className="btn btn-danger btn-sm m-3" onClick={() => { setOpen(false); btnlogout(); }}>
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login" onClick={() => setOpen(false)}>Sign in</Link>
+                            <Link to="/signup" className="signup" onClick={() => setOpen(false)}>Get started</Link>
+                        </>
+                    )}
                 </div>
             </div>
         </section>

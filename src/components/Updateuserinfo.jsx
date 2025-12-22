@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 function Dashboard({api_url}) {
     const navigate = useNavigate();
@@ -37,11 +38,11 @@ function Dashboard({api_url}) {
                 });
             } else {
                 console.error("profile data loading Failed:", result);
-                // alert(`Login Failed: Either the Email or the Password is incorrect`);
+                toast.error("Failed to load profile data.");
             }
         } catch (error) {
             console.error("Network Error:", error);
-            alert("A network error occurred. Please try again.");
+            toast.error("A network error occurred. Please try again.");
         } finally {
             setIsLoading(false); 
         }
@@ -52,7 +53,7 @@ function Dashboard({api_url}) {
             return;
         }
         Getuserdata();
-    }, [api_url, userToken]);
+    }, [api_url, userToken,navigate]);
     
     const handleChange = (e) => {
         setFormData({
@@ -62,7 +63,7 @@ function Dashboard({api_url}) {
     };
     async function cancel(){
         navigate('/')
-        alert("Canceled Information update!");
+        toast.success("Canceled information update!");
     }
     async function updatedata(e) {
         e.preventDefault();
@@ -80,19 +81,18 @@ function Dashboard({api_url}) {
             const result = await response.json();
             console.log(result);
             if (response.ok) {
-                alert("Information Updates successfully!");
+                toast.success("Information updated successfully!");
                 console.log(result);
                 localStorage.setItem('fname', formData.first_name);
                 localStorage.setItem('lname', formData.last_name);
                 localStorage.setItem('username', formData.username);
             } else {
-                console.error("profile data update Failed:", result);
                 console.error("Update Failed:", result);
-                // alert(`Login Failed: Either the Email or the Password is incorrect`);
+                toast.error(result.detail || "Update failed. Please check your inputs.");
             }
         } catch (error) {
             console.error("Network Error:", error);
-            alert("A network error occurred. Please try again.");
+            toast.error("A network error occurred during the update.");
         } finally {
             setIsLoading(false); 
         }

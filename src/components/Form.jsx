@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Form.css'
+import toast from 'react-hot-toast';
 
 function Form({service,api_url}) {
     const stored_email = localStorage.getItem("email"); 
@@ -19,7 +20,6 @@ function Form({service,api_url}) {
         message: ''
     });
 
-    const [status, setStatus] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,9 +27,11 @@ function Form({service,api_url}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('Sending...');
-        
-        const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
+        if (formData.time_type === 'half' && formData.startTime >= formData.endTime) {
+            toast.error("End time must be after start time");
+            return;
+        }
+
         let submissionData = {
             service: service.id,
             booking_date: formData.weddingDate,
@@ -59,7 +61,7 @@ function Form({service,api_url}) {
             const result = await response.json();
 
             if (response.ok) {
-                setStatus('Booking Requested Successfully!');
+                toast.success('Booking Requested Successfully!');
                 // Reset fields
                 setFormData({
                     ...formData,
@@ -71,11 +73,11 @@ function Form({service,api_url}) {
                 });
             } else {
                 const errorMsg = result.non_field_errors || result.detail || "Booking failed.";
-                setStatus(`Error: ${errorMsg}`);
+                toast.error(`Error: ${errorMsg}`);
             }
         } catch (error) {
             console.error('Network Error:', error);
-            setStatus('Connection error. Please try again.');
+            toast.error('Connection error. Please try again.');
         }
     };
 
@@ -83,7 +85,6 @@ function Form({service,api_url}) {
         <>
             <div className='form-section'>
                 <form onSubmit={handleSubmit}>
-                    {status && <div className="status-banner">{status}</div>}
                     <label>Email</label>
                     <input name="email" type="email" value={formData.email}
                     placeholder="Enter your email" onChange={handleChange} required />
@@ -152,8 +153,7 @@ function Form({service,api_url}) {
                         <span>Terms of Use</span> and <span>Privacy Policy</span>.
                     </p>
 
-                    <p>{status}</p>
-                    <button type="submit">Submit Inquiry</button>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </>

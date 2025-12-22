@@ -5,6 +5,7 @@ import './Login.css'
 // import { useDispatch } from "react-redux";
 // import { login } from '../store/userSlice.js';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 function Login({ api_url }) {
     const [showPass, setShowPass] = useState(false);
@@ -35,7 +36,8 @@ function Login({ api_url }) {
             });
             const result = await response.json();
             if (response.ok) {
-                alert("Login successful!");
+                // alert("Login successful!");
+                toast.success('Login successful, Welcome back!');
                 console.log(result);
                 // store the users info in localstorage
                 localStorage.setItem('userToken', result.token);
@@ -68,11 +70,12 @@ function Login({ api_url }) {
                 }
             } else {
                 console.error("Login Failed:", result);
-                alert(`Login Failed: Either the Email or the Password is incorrect`);
+                // alert(`Login Failed: Either the Email or the Password is incorrect`);
+                toast.error('Login failed. Please try again: Either the Email or the Password is incorrect')
             }
         } catch (error) {
             console.error("Network Error:", error);
-            alert("A network error occurred. Please try again.");
+            toast.error("A network error occurred. Please try again.");
         } finally {
             setIsLoading(false); 
         }

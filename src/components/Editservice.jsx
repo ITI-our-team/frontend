@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 import CATEGORY_SECTIONS from './categories';
+import toast from 'react-hot-toast';
 
 function EditService({ api_url }) {
     const { id } = useParams();
@@ -17,7 +18,7 @@ function EditService({ api_url }) {
         price: '',
         location: '',
     });
-
+    const [existingThumbnail, setExistingThumbnail] = useState('');
     // Files are handled separately from text state
     const [thumbnail, setThumbnail] = useState(null);
     const [gallery, setGallery] = useState(null);
@@ -40,11 +41,14 @@ function EditService({ api_url }) {
                         location: data.location,
                         thumbnail:data.thumbnail
                     });
+                    setExistingThumbnail(data.thumbnail);
+                }else {
+                    toast.error("Failed to load service details.");
                 }
             }
             catch (error) {
                 console.error("Network Error:", error);
-                alert("A network error occurred. Please try again.");
+                toast.error("A network error occurred. Please try again.");
             } finally {
                 setIsLoading(false); 
             }
@@ -61,7 +65,11 @@ function EditService({ api_url }) {
         setIsLoading(true);
 
         const dataToSend = new FormData();
-        Object.keys(formData).forEach(key => dataToSend.append(key, formData[key]));
+        dataToSend.append('name', formData.name);
+        dataToSend.append('category', formData.category);
+        dataToSend.append('description', formData.description);
+        dataToSend.append('price', formData.price);
+        dataToSend.append('location', formData.location);
         
         if (thumbnail) dataToSend.append('thumbnail', thumbnail);
         if (gallery) {
@@ -78,11 +86,16 @@ function EditService({ api_url }) {
             });
 
             if (response.ok) {
-                alert("Updated successfully!");
+                toast.success("Updated successfully!");
                 navigate(`/services/${id}`);
+            }else {
+                const errorData = await response.json();
+                console.error("Server Error:", errorData);
+                toast.error("Update failed. Please check your inputs.");
             }
         } catch (error) {
             console.error("Update Error:", error);
+            toast.error("A network error occurred during the update.");
         } finally {
             setIsLoading(false);
         }
@@ -124,7 +137,7 @@ function EditService({ api_url }) {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="price">Service Price</label>
+                        <label htmlFor="price">Service Price (EGP)</label>
                         <input id="price" type="number" value={formData.price} onChange={handleChange} required />
                     </div>
 
@@ -138,11 +151,13 @@ function EditService({ api_url }) {
                         <input id="location" value={formData.location} onChange={handleChange} />
                     </div>
                     
-                    <div className='d-flex justify-content-center flex-column'>
-                        {formData.thumbnail ? 
-                            <label className='mx-auto' >Thumbnail Image</label>
-                        :<></>}
-                        <img className='w-25 mx-auto' src={formData.thumbnail}></img>
+                    <div className='d-flex justify-content-center flex-column my-3'>
+                        <label className='mx-auto'>Current Thumbnail</label>
+                        <img 
+                            className='w-25 mx-auto rounded shadow-sm' 
+                            src={thumbnail ? URL.createObjectURL(thumbnail) : existingThumbnail} 
+                            alt="Preview"
+                        />
                     </div>
                     <div className="file-input ">
                         <label>Change Thumbnail (Optional):</label>

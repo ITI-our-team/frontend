@@ -3,6 +3,7 @@ import './Login.css'
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 function SignUp({ api_url }) {
     const [showPass1, setShowPass1] = useState(false);
@@ -38,7 +39,7 @@ function SignUp({ api_url }) {
             });
             const result = await response.json();
             if (response.ok) {
-                alert("Register successful!");
+                toast.success("Register successful!");
                 console.log(result);
                 navigate('/login');
             } else {
@@ -57,11 +58,11 @@ function SignUp({ api_url }) {
                 }
                 // console.error("Register Failed:", result);
                 console.log(err)
-                alert(`Login Failed: ${err}`);
+                toast.error(`Login Failed: ${err}`);
             }
         } catch (error) {
             console.error("Network Error:", error);
-            alert("A network error occurred. Please try again.");
+            toast.error("A network error occurred. Please try again.");
         } finally {
             setIsLoading(false); 
         }

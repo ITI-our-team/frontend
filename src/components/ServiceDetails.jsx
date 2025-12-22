@@ -4,6 +4,7 @@ import "./ServiceDetails.css";
 import Form from "./Form";
 // import { useSelector } from "react-redux";
 import { Link,useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 function ServiceDetails({api_url}) {
     const { id } = useParams();
@@ -18,27 +19,54 @@ function ServiceDetails({api_url}) {
     useEffect(() => {
         const getService = async () => {
             setIsLoading(true);
-            const res = await fetch(
-                `${api_url}api/services/${id}/`
-            );
-            
             try {
-                const data = await res.json();
-                setService(data);
-                console.log(data)
+                const res = await fetch(`${api_url}api/services/${id}/`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setService(data);
+                } else {
+                    toast.error("Could not find this service.");
+                    navigate("/services");
+                }
             } catch (err) {
                 console.error("error fetching data:", err);
+                toast.error("Network error. Please try again later.");
                 setService([]);
             } finally {
                 setIsLoading(false);
             }
         };
         getService();
-    }, [api_url, id]);
+    }, [api_url, id,navigate]);
     
-
     async function deleteservice() {
-        if (!window.confirm("Are you sure you want to delete this service?")) return;
+        toast((t) => (
+            <span>
+                <b>Are you sure?</b><br/> This will permanently delete the service.
+                <div className="d-flex gap-2 mt-2 justify-content-center">
+                    <button
+                        className="btn btn-danger btn-sm"
+                        onClick={async () => {
+                            toast.dismiss(t.id);
+                            await executeDelete();
+                        }}
+                    >
+                        Yes, Delete
+                    </button>
+                    <button
+                        className="btn btn-secondary btn-sm"
+                        onClick={() => toast.dismiss(t.id)}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </span>
+        ), {
+            duration: 6000, // Give them time to read and click
+            position: 'top-center',
+        });
+    }
+    async function executeDelete() {
         
         setIsLoading(true);
         try {
@@ -50,10 +78,14 @@ function ServiceDetails({api_url}) {
             });
             
             if (res.ok) {
+                toast.success("Service deleted successfully.");
                 navigate("/dashboard");
+            } else {
+                toast.error("You are not authorized to delete this service.");
             }
         } catch (err) {
             console.error("error deleting data:", err);
+            toast.error("A network error occurred.");
         } finally {
             setIsLoading(false);
         }
