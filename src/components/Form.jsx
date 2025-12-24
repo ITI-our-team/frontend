@@ -2,7 +2,8 @@ import { useState } from 'react';
 import './Form.css'
 import toast from 'react-hot-toast';
 
-function Form({service,api_url}) {
+function Form({ service, api_url }) {
+    const disabledDates = service.unavailable_dates || [];
     const stored_email = localStorage.getItem("email"); 
     const stored_fname = localStorage.getItem('fname');
     const stored_lname = localStorage.getItem('lname');
@@ -22,11 +23,26 @@ function Form({service,api_url}) {
 
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        // 2. Check if the selected date is in the unavailable list
+        if (name === "weddingDate") {
+            if (disabledDates.includes(value)) {
+                toast.error(`Sorry, ${value} is already fully booked!`);
+                setFormData({ ...formData, weddingDate: '' }); // Clear the input
+                return;
+            }
+        }
+
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (disabledDates.includes(formData.weddingDate)) {
+            toast.error("This date is unavailable.");
+            return;
+        }
         if (formData.time_type === 'half' && formData.startTime >= formData.endTime) {
             toast.error("End time must be after start time");
             return;
@@ -108,7 +124,14 @@ function Form({service,api_url}) {
                     <input name="weddingDate" type="date" min={today}
                         value={formData.weddingDate} onChange={handleChange}
                         required />
-                    
+                    {disabledDates.length > 0 && (
+                        <div className="unavailable-info mb-2">
+                            <small className="text-danger">Note: Some dates are fully booked.</small>
+                            <ul className="small text-muted">
+                                {disabledDates.map(date => <li key={date}>{date} (Booked)</li>).slice(0, 4)}
+                            </ul>
+                        </div>
+                    )}
                     {service.category === "wedding_planner" && (
                         <>
                             <label>Start Time</label>
