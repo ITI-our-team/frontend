@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import './MyBookings.css'
 
 function MyBookings({ api_url }) {
     const [bookings, setBookings] = useState([]);
@@ -99,7 +100,8 @@ function MyBookings({ api_url }) {
                     <div className="text-center py-5 shadow-sm bg-white rounded">
                         <h4>No bookings yet!</h4>
                         <p>Start exploring our venues and vendors to plan your perfect day.</p>
-                        <Link to="/services" className="btn btn-primary">Browse Services</Link>
+                        
+                        <Link to="/services"><button className='browse-btn'>Browse Services</button></Link>
                     </div>
                 ) : (
                     <div className="row g-4">
@@ -117,14 +119,14 @@ function MyBookings({ api_url }) {
                                     </div>
                                     <div className="card-footer border-top-0 d-flex gap-2 pb-3">
                                         <Link to={`/bookings/${book.id}`} className="btn btn-outline-info btn-sm flex-grow-1">
-                                            View Details
+                                            View Details <i class="fa-solid fa-eye"></i>
                                         </Link>
                                         {book.status === 'pending' && (
                                             <button 
                                                 onClick={() => deleteBooking(book.id)} 
                                                 className="btn btn-outline-danger btn-sm"
                                             >
-                                                Cancel
+                                                <i class="fa-solid fa-trash"></i>
                                             </button>
                                         )}
                                     </div>

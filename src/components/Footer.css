@@ -22,7 +22,7 @@
     font-size: var(--font-size-big-text);
     font-family: serif;
     font-weight: bold;
-    color: var(--color-btn);
+    color: rgb(248, 241, 225);
 }
 
 .content-footer p {
@@ -54,7 +54,7 @@
 
 .explore h4,
 .social h4 {
-    color: var(--color-btn);
+    color: rgb(248, 241, 225);
     font-size: 18px;
     margin-bottom: 18px;
 }
@@ -103,7 +103,7 @@
 }
 
 .end-footer{
-    color: var(--color-paragraph);
+    color: rgb(248, 241, 225);
     margin-top: 30px;
 }
 
@@ -115,7 +115,7 @@
 }
 
 /* =======================
-   Responsive Footer
+    Responsive Footer
 ======================= */
 
 /* Tablet */

@@ -41,7 +41,7 @@ nav {
     font-family: initial;
     font-size: 32px;
     font-weight: bold;
-    color: var(--color-btn);
+    color: antiquewhite;
     transition: color 0.3s ease;
 }
 
@@ -110,12 +110,13 @@ nav {
     background: var(--color-btn);
     border: none;
     margin-right: 15px;
-    color: var(--color-secondary);
+    color: white;
     transition: .3s;
 }
 
 .sign-in:hover {
     background: #deccb3;
+    color: #2b1f15;
 }
 
 .btns{

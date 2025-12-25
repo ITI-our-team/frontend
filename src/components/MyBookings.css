@@ -1,0 +1,12 @@
+.browse-btn{
+    border: none;
+    border-radius: 5px;
+    padding: 8px 100px;
+    margin-top: 35px;
+    background-color: #795548;
+    color: white;
+}
+
+.browse-btn:hover{
+    background-color: #795548de;
+}
