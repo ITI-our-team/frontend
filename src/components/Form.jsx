@@ -10,6 +10,7 @@ function Form({ service, api_url }) {
     const userToken = localStorage.getItem("userToken");
     const today = new Date().toISOString().split('T')[0];
     const currentTimeStr = new Date().toTimeString().slice(0, 5);
+    const basePrice = parseFloat(service.price) || 0;
     const [formData, setFormData] = useState({
         email: stored_email || '',
         firstName: stored_fname || '',
@@ -18,9 +19,39 @@ function Form({ service, api_url }) {
         time_type: 'full', 
         startTime: '', 
         endTime: '',
-        message: ''
+        message: '',
+        selectedExtras: [],
+        totalPrice: basePrice
     });
 
+    const handleExtraToggle = (extra) => {
+        let updatedExtras = [...formData.selectedExtras];
+        const index = updatedExtras.findIndex(item => item.id === extra.id);
+
+        if (index > -1) {
+            // Remove if already selected
+            updatedExtras.splice(index, 1);
+        } else {
+            // Add if not selected
+            updatedExtras.push(extra);
+        }
+
+        // Calculate new total
+        const extrasTotal = updatedExtras.reduce((sum, item) => sum + parseFloat(item.price), 0);
+        
+        // Update the notes/message automatically
+        const extrasText = updatedExtras.length > 0 
+            ? `Selected Extras: ${updatedExtras.map(e => `${e.name} (+${e.price})`).join(', ')}\n`
+            : '';
+
+        setFormData({ 
+            ...formData, 
+            selectedExtras: updatedExtras,
+            totalPrice: basePrice + extrasTotal,
+            // We only update the extras part of the message here
+            message: extrasText + formData.message.replace(/^Selected Extras:.*\n/, '')
+        });
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -86,6 +117,7 @@ function Form({ service, api_url }) {
                     time_type: 'full', 
                     startTime: '', 
                     endTime: '',
+                    selectedExtra: ''
                 });
             } else {
                 const errorMsg = result.non_field_errors || result.detail || "Booking failed.";
@@ -165,18 +197,55 @@ function Form({ service, api_url }) {
                             )}
                         </>
                     )}
-
+                    {service.extras && service.extras.length > 0 && (
+                        <div className="extras-container mt-3 p-3 border rounded">
+                            <h6 className="mb-3">Customise Your Booking (Optional Extras)</h6>
+                            {service.extras.map(extra => (
+                                <div key={extra.id} className="form-check mb-2 d-flex align-items-center gap-2">
+                                    <input 
+                                        className="form-check-input"
+                                        type="checkbox" 
+                                        id={`extra-${extra.id}`}
+                                        checked={formData.selectedExtras.some(item => item.id === extra.id)}
+                                        onChange={() => handleExtraToggle(extra)}
+                                    />
+                                    <label className="form-check-label flex-grow-1" htmlFor={`extra-${extra.id}`}>
+                                        {extra.name}
+                                    </label>
+                                    <span className="text-muted small">+{extra.price} L.E.</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     <label>Message</label>
                     <textarea name="message" value={formData.message}
                         placeholder="Enter the message you want"
                         onChange={handleChange} rows="4"></textarea>
-
+                    <div className="price-display-card mb-3 p-3 rounded bg-dark text-white text-center shadow">
+                        <div className="d-flex justify-content-between px-3">
+                            <span>Base Price:</span>
+                            <span>{basePrice.toLocaleString()} L.E.</span>
+                        </div>
+                        {formData.selectedExtras.map(extra => (
+                            <div key={extra.id} className="d-flex justify-content-between px-3 small text-info">
+                                <span>+ {extra.name}:</span>
+                                <span>{parseFloat(extra.price).toLocaleString()} L.E.</span>
+                            </div>
+                        ))}
+                        <hr className="my-2" />
+                        <div className="d-flex justify-content-between px-3">
+                            <span className="fw-bold">Total:</span>
+                            <h3 className="mb-0 text-warning">{formData.totalPrice.toLocaleString()} L.E.</h3>
+                        </div>
+                    </div>
                     <p className="terms">
                         By submitting your inquiry, you agree to our{" "}
                         <span>Terms of Use</span> and <span>Privacy Policy</span>.
                     </p>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit">
+                        Book for {formData.totalPrice.toLocaleString()} L.E.
+                    </button>
                 </form>
             </div>
         </>

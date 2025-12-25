@@ -157,7 +157,8 @@ function ServiceDetails({api_url}) {
                                 ))
                             )}
                         </div>
-                        <div className="extra-data col-md-6 col-12 mt-4">
+                        {/* moved to the form to make it easier to show */}
+                        {/* <div className="extra-data col-md-6 col-12 mt-4">
                             {service.extras && (
                                 service.extras.map(
                                     extra => (
@@ -170,7 +171,7 @@ function ServiceDetails({api_url}) {
                             )
 
                             }
-                        </div>
+                        </div> */}
                     </div>
 
                     <Link to="/services" >
