@@ -1,9 +1,9 @@
 import './Navbar.css'
-import { Link, useLocation,useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import toast from 'react-hot-toast'
 
-function Navbar({api_url}) {
+function Navbar({ api_url }) {
 
     const location = useLocation()
     const [open, setOpen] = useState(false)
@@ -11,9 +11,9 @@ function Navbar({api_url}) {
     const menuRef = useRef(null)
     const btnRef = useRef(null)
     const navigate = useNavigate();
-    const userToken = localStorage.getItem("userToken"); 
-    const username = localStorage.getItem("username"); 
-    const role = localStorage.getItem("role"); 
+    const userToken = localStorage.getItem("userToken");
+    const username = localStorage.getItem("username");
+    const role = localStorage.getItem("role");
     function btnlogout() {
         toast((t) => (
             <span className="text-center">
@@ -46,7 +46,7 @@ function Navbar({api_url}) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Token ${userToken}` 
+                    'Authorization': `Token ${userToken}`
                 },
             });
 
@@ -127,34 +127,48 @@ function Navbar({api_url}) {
                 <nav>
                     <div className="part-one">
                         <div className="logo">
-                            <p>WEDORA</p>
+                            <p>WEDORA <i class="fa-solid fa-crown"></i></p>
                         </div>
 
                         <div className="menu">
-                            <Link to="/"><button>Home</button></Link>
-                            <Link to="/services"><button>venues and vendors</button></Link>
-                            <Link to="/"><button>projects</button></Link>
+                            <Link to="/">
+                                <button className={location.pathname === "/" ? "active" : ""}>
+                                    Home
+                                </button>
+                            </Link>
+
+                            <Link to="/services">
+                                <button className={location.pathname.startsWith("/services") ? "active" : ""}>
+                                    venues and vendors
+                                </button>
+                            </Link>
+
+                            <Link to="/">
+                                <button className={location.pathname === "/projects" ? "active" : ""}>
+                                    projects
+                                </button>
+                            </Link>
                         </div>
                     </div>
                     {username ? (
                         <>
                             <div className="btns">
                                 {(role === "vendor") && (
-                                    <Link to="/dashboard"> 
+                                    <Link to="/dashboard">
                                         {/* this button only shows for vendors accounts */}
-                                        <button className="sign-in">Dashboard</button>
+                                        <button className="dashboard-btn">Dashboard</button>
                                     </Link>
                                 )}
                                 {role === "customer" && (
                                     <Link to="/my-bookings">
-                                        <button className="sign-in">My Bookings</button>
+                                        <button className="my-booking-btn">My Bookings</button>
                                     </Link>
                                 )}
-                                    <Link to="/updateinfo"> 
-                                        {/* this button only shows for vendors accounts */}
-                                        <button className="sign-in">Update Info</button>
-                                    </Link>
-                                    <button className="btn text-light" onClick={btnlogout}>Logout</button>
+                                <Link to="/updateinfo">
+                                    {/* this button only shows for vendors accounts */}
+                                    <button className="update-info-btn">Update Info</button>
+                                </Link>
+                                <button className="logout-btn" onClick={btnlogout}>Logout <i class="fa-solid fa-right-to-bracket"></i></button>
                             </div>
                         </>
                     ) : (

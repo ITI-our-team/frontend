@@ -40,6 +40,12 @@ color: var(--color-primary);
     color: var(--color-secondary);
 }
 
+.extra-images{
+        display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
 
 /* responsive */
 @media (max-width: 768px) {

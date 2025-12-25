@@ -1,16 +1,14 @@
 /* =====================
-   Home Section
+  Home Section
 ===================== */
 
 .home-section {
   padding: 80px 10%;
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg) 0%,
-    var(--color-bg) 45%,
-    var(--color-soft) 65%,
-    var(--color-soft) 100%
-  );
+  background: linear-gradient(to bottom,
+      var(--color-bg) 0%,
+      var(--color-bg) 45%,
+      var(--color-soft) 65%,
+      var(--color-soft) 100%);
 }
 
 /* Layout */
@@ -22,7 +20,7 @@
 }
 
 /* =====================
-   Right Content
+  Right Content
 ===================== */
 
 .right-content {
@@ -42,7 +40,7 @@
 }
 
 /* =====================
-   Cards Common
+  Cards Common
 ===================== */
 
 .hair,
@@ -80,11 +78,11 @@
 }
 
 /* =====================
-   Overlap (Desktop Only)
+  Overlap (Desktop Only)
 ===================== */
 
-.photo ,
-.makeup  {
+.photo,
+.makeup {
   margin-top: -500px;
 }
 
@@ -93,7 +91,7 @@
 }
 
 /* =====================
-   Reveal Animation
+  Reveal Animation
 ===================== */
 
 .reveal {
@@ -115,19 +113,19 @@
 }
 
 /* =====================
-   Mobile Responsive
+  Mobile Responsive
 ===================== */
 
 /* tablet */
 
-@media (max-width: 1024px) { 
+@media (max-width: 1024px) {
   .home-section {
     padding: 60px 6%;
   }
 
   .home-section .container {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 60px;
   }
 
@@ -144,7 +142,7 @@
     line-height: 1.6;
   }
 
-  
+
   .photo,
   .makeup,
   .dress,
@@ -165,11 +163,12 @@
   .photo h3,
   .dress h3 {
     font-size: 18px;
-    }
-    .right-content {
-        order: -1; 
-        text-align: center;
-    }
+  }
+
+  .right-content {
+    order: -1;
+    text-align: center;
+  }
 }
 
 
@@ -209,7 +208,7 @@
     font-size: 18px;
   }
 
-  
+
   .reveal-left,
   .reveal-right {
     transform: translateY(40px);

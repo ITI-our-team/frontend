@@ -26,8 +26,7 @@
 .portfolio-one__slider {
   position: relative;
   display: flex;
-  margin-top: 30px;
-
+margin: 30px 0;
   justify-content: space-around;
 }
 
@@ -115,9 +114,6 @@
   color: inherit;
 }
 
-/* .portfolio-one__cats a:hover {
-} */
-
 .portfolio-one__title {
   font-size: 20px;
   line-height: 30px;
@@ -163,8 +159,8 @@
 
 .more-btn {
   text-decoration: none;
-  padding: 10px 20px;
-  background-color: var(--color-secondary);
+  padding: 10px 100px;
+  background-color: var(--color-btn-dark);
   color: whitesmoke;
   border-radius: 5px;
   transition: 0.5s;
@@ -175,7 +171,7 @@
 }
 
 .more-btn:hover {
-  background-color: #632301;
+  background-color: #795548d6;
 }
 
 .section-title__tagline {

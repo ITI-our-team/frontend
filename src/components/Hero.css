@@ -62,11 +62,11 @@
     position: relative;
     overflow: hidden;
     font-size: 1.125rem;
-    padding: 2px 50px;
+    padding: 6px 101px;
     border: none;
     border-radius: 6px;
     background-color: #bd86543d;
-    color: #e4dac6d4;
+    color: #e4dac6;
     font-family: serif;
     cursor: pointer;
     box-shadow: -2px 2px 4px 0px #7c7b7b;

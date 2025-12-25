@@ -4,6 +4,8 @@
   --color-secondary: #90451d; /* text-buttons */
   --color-btn: #e6dac9; /* buttons */
   --color-btn-hover: #deccb3; /* buttons-background-hover */
+  --color-btn-dark:#795548;
+  --color-btn-dark-hover:#795548d6;
   --color-soft: #9c521d6e; 
   --color-bg: #f6f3ee; /* Background */
   --color-bg-local: whitesmoke;
@@ -17,7 +19,7 @@
   
   --font-size-big-text: 3rem;   /* 1rem = 16px*/
   --font-size-text: 1.2rem;
-  --font-size-smtext: 0.9rem;
+  --font-size-smtext: 1rem;
   --font-size-btns: 1.125rem;
   --line-height: 1.6;
 }
