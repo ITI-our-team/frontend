@@ -94,11 +94,6 @@ nav {
     width: 100%;
 }
 
-/* .menu button:hover {
-    color: var(--color-text);
-    background-color: var(--color-bg-hover);
-} */
-
 .nav-section.scrolled .menu button {
     color: whitesmoke;
     font-weight: 200;
@@ -126,7 +121,7 @@ nav {
 .btns{
         display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .get-start {
@@ -154,16 +149,20 @@ nav {
     transition: .3s;
 }
 .my-booking-btn{
-        background-color: #331d085c;
-    color: #f5e8ce;
+        /* background-color: #331d085c; */
+    background-color: #f1dfcf;
+    color: black;
     padding: 5px 10px;
+}
+.my-booking-btn:hover{
+    color: wheat;
 }
 .my-booking-btn:hover,
 .update-info-btn:hover{
     background-color: #d49a6353;
 }
 .update-info-btn{
-    background-color: #331d085c;
+background-color: transparent;
     color: #f5e8ce;
     padding: 5px 10px;
 }
@@ -172,7 +171,6 @@ nav {
     color: whitesmoke;
     display: inline-flex;
     align-items: center;
-    /* gap: 8px; */
     cursor: pointer;
 }
 .logout-btn i {

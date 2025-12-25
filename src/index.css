@@ -12,14 +12,14 @@
   --color-bg-hover:#00000044; /* background hover */
   --color-gold: #a68868; /* important-icons */
   --color-text:#e4dac6d4;
-  --color-smtext:#a5a5a5;
+  --color-smtext:#9c9c9c;
   --color-paragraph:#9b907f;
   --color-small-pg:#574d3f;
 
   
-  --font-size-big-text: 3rem;   /* 1rem = 16px*/
-  --font-size-text: 1.2rem;
-  --font-size-smtext: 1rem;
+  --font-size-big-text: 2.5rem;   /* 1rem = 16px*/
+  --font-size-text: 1.4rem;
+  --font-size-smtext: 1.2rem;
   --font-size-btns: 1.125rem;
   --line-height: 1.6;
 }

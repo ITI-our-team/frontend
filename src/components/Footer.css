@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 65px 0 40px 0;
+    padding: 100px 0;
 }
 
 .footer-section .container footer {
@@ -27,7 +27,7 @@
 
 .content-footer p {
     line-height: var(--line-height);
-    font-size: var(--font-size-smtext);
+    font-size: 16px;
     color: var(--color-smtext);
 }
 
@@ -55,14 +55,14 @@
 .explore h4,
 .social h4 {
     color: var(--color-btn);
-    font-size: var(--font-size-text);
+    font-size: 18px;
     margin-bottom: 18px;
 }
 
 .explore li {
     color: var(--color-smtext);
     font-weight: 400;
-    font-size: var(--font-size-smtext);
+    font-size: 16px;
 }
 
 .explore li:hover {
@@ -70,7 +70,7 @@
 }
 
 .social li {
-    font-size: 1.5rem;
+    font-size: 20px;
     padding-right: 20px;
 }
 

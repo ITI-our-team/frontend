@@ -27,7 +27,7 @@ font-family: serif;
 
 .content p{
     font-size: var(--font-size-smtext);
-    font-weight: bold;
+    /* font-weight: bold; */
     color: var(--color-smtext);
     margin-top: 20px;
     font-family: serif;

@@ -166,7 +166,7 @@ function Navbar({ api_url }) {
                                 )}
                                 <Link to="/updateinfo">
                                     {/* this button only shows for vendors accounts */}
-                                    <button className="update-info-btn">Update Info</button>
+                                    <button className="update-info-btn">Update Info <i class="fa-solid fa-wrench"></i></button>
                                 </Link>
                                 <button className="logout-btn" onClick={btnlogout}>Logout <i class="fa-solid fa-right-to-bracket"></i></button>
                             </div>
