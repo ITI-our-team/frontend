@@ -1,5 +1,6 @@
 .service-details-section {
-    padding: 120px 0;
+    padding: 120px 0 75px;
+    background-color: var(--color-bg-local);
 }
 
 .service-details-section h1 {
@@ -11,75 +12,105 @@
 }
 
 .details-hero {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 25px;
 }
 
 .img-details {
-    width: 40%;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .img-details img {
     width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
 }
+
+.details-hero-form {
+    grid-row: span 2;
+}
+
+.extra-images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    object-fit: cover;
+}
+
+.card-img img:hover {
+    transform: scale(1.05);
+}
+
 
 .more-details {
     display: flex;
     flex-direction: column;
+    grid-column: span 1;
 }
 
-.more-details h5{
-color: var(--color-primary);
+.more-details h5 {
+    color: var(--color-primary);
 }
-.more-details p{
+
+.more-details p {
     font-size: 18px;
     margin-bottom: 20px;
     font-weight: 400;
     color: var(--color-secondary);
 }
 
-.extra-images{
-        display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
 
 
 /* responsive */
 @media (max-width: 768px) {
-    .service-details-section {
-        padding: 120px 0 55px;
-    }
-
-    .service-details-section h1 {
-        font-size: 26px;
-    }
-
-    .details-hero {
+    /* .details-hero {
+        display: flex;
         flex-direction: column;
-    }
-
-    .img-details {
-        width: 40%;
+        gap: 20px;
     }
 
     .img-details img {
+        height: auto;
+        width: 100%;
+    }
+
+    .extra-images {
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+    }
+
+    .extra-images .card-img img {
+        height: 80px;
+    }
+
+    .details-hero-form {
+        grid-row: auto;
         width: 100%;
     }
 
     .more-details {
-        display: flex;
-        flex-direction: column;
+        grid-column: span 1;
+        width: 100%;
     }
 
-    .more-details h5{
-        font-size: 18px;
-
-}
-.more-details p{
-    font-size: 16px;
-}
-
+    .back-btn {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    } */
 }

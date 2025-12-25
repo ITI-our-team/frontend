@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    padding: 6px 0;
+    padding: 10px 0;
     transition: 0.5s;
 }
 
@@ -121,7 +121,7 @@ nav {
 .btns{
         display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .get-start {
@@ -184,6 +184,14 @@ background-color: transparent;
     transform: translateX(6px);
 }
 
+.welcome-para{
+    color: white;
+}
+
+.mobile-menu hr{
+    background-color: white;
+}
+
 /* responsive */
 @media (max-width: 768px) {
     nav {
@@ -199,7 +207,8 @@ background-color: transparent;
         position: absolute;
         top: 100%;
         right: 14px;
-        background: #422c25;
+        background: #2b1f15;
+        border-radius: 5px;
         padding: 20px;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         display: flex;
@@ -235,8 +244,8 @@ background-color: transparent;
     .mobile-menu a {
         padding: 12px 0;
         text-decoration: none;
-        color: var(--color-primary);
         color: whitesmoke;
+        font-weight: 200;
     }
 
     .mobile-menu hr {
@@ -255,4 +264,5 @@ background-color: transparent;
     .nav-section.scrolled .logo p {
         font-size: 24px ;
     }
+    
 }

@@ -2,13 +2,13 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   --color-primary: rgb(30, 24, 18); /* Header Footer text */
   --color-secondary: #90451d; /* text-buttons */
-  --color-btn: #e6dac9; /* buttons */
-  --color-btn-hover: #deccb3; /* buttons-background-hover */
+  --color-btn: #a68868; /* buttons */
+  --color-btn-hover: #8d6e63; /* buttons-background-hover */
   --color-btn-dark:#795548;
   --color-btn-dark-hover:#795548d6;
   --color-soft: #9c521d6e; 
   --color-bg: #f6f3ee; /* Background */
-  --color-bg-local: #f5f1e5;
+  --color-bg-local: #f5f1e55d;
   --color-bg-hover:#00000044; /* background hover */
   --color-gold: #a68868; /* important-icons */
   --color-text:#e4dac6d4;

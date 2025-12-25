@@ -197,15 +197,14 @@ function Navbar({ api_url }) {
                     ref={menuRef}
                     className={`mobile-menu ${open ? 'show' : ''}`}
                 >
+                    <p className="px-3 small  welcome-para">Welcome, {username}</p>
+                    <hr />
                     <Link to="/" onClick={() => setOpen(false)}>Home</Link>
                     <Link to="/services" onClick={() => setOpen(false)}>Venues & Vendors</Link>
                     <Link to="/" onClick={() => setOpen(false)}>Projects</Link>
 
-                    <hr />
-
                     {username ? (
                         <>
-                            <p className="px-3 small text-muted">Welcome, {username}</p>
                             {role === 'vendor' && <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>}
                             <Link to="/updateinfo" onClick={() => setOpen(false)}>My Profile</Link>
                             <button className="btn btn-danger btn-sm m-3" onClick={() => { setOpen(false); btnlogout(); }}>
