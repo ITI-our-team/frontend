@@ -1,41 +1,56 @@
 import { Link,useNavigate } from 'react-router-dom'
-import './Login.css'
+import './SignUp.css'
 import { useForm } from "react-hook-form"
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUserCircle,FaTimesCircle } from "react-icons/fa";
 import toast from 'react-hot-toast';
 
 function SignUp({ api_url }) {
     const [showPass1, setShowPass1] = useState(false);
     const [showPass2, setShowPass2] = useState(false);
+    const [imagePreview, setImagePreview] = useState(null);
     const navigate = useNavigate();
     const {
         register,watch,
         handleSubmit,
         formState: { errors },
+        setValue,
         // reset,
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImagePreview(URL.createObjectURL(file));
+        }
+    };
+    const removeImage = () => {
+        setImagePreview(null);
+        setValue("profile_image", null);
+        document.getElementById('profile_image').value = "";
+    };
+
     async function myHandleSubmit(data) {
         setIsLoading(true);
         const API_URL = `${api_url}api/user/register/`;
+        const formData = new FormData();
+        formData.append("username", data.username);
+        formData.append("password", data.passwd1);
+        formData.append("password2", data.passwd2);
+        formData.append("email", data.email);
+        formData.append("first_name", data.fname);
+        formData.append("last_name", data.lname);
+        formData.append("phone_number", data.phonenum);
+        formData.append("role", data.role ? "vendor" : "customer");
+        
+        if (data.profile_image && data.profile_image[0]) {
+            formData.append("profile_image", data.profile_image[0]);
+        }
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                username: data.username,
-                password: data.passwd1,
-                password2: data.passwd2,
-                email: data.email,
-                first_name: data.fname,
-                last_name: data.lname,
-                phone_number: data.phonenum,
-                role: data.role ? "vendor" :"customer"
-                }),
+                body: formData,
             });
             const result = await response.json();
             if (response.ok) {
@@ -88,14 +103,46 @@ function SignUp({ api_url }) {
         window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
     };
     return (
-        <section className="login-page">
-            <div className="login-box">
+        <section className="Signup-page">
+            <div className="Signup-box">
                 <h2>Create Account</h2>
                 <p>Welcome to your wedding journey.<br/>
                 Sign Up to discover beautiful venues, vendors, and everything you need</p>
 
 
                 <form onSubmit={handleSubmit(myHandleSubmit)} className='col-md-10 col-12 signupform'>
+                    <div className="form-group text-center mb-4">
+                        <div className="profile-image-container">
+                            {imagePreview ? (
+                                <>
+                                    <img src={imagePreview} alt="Preview" className="profile-preview-img" />
+                                    <button 
+                                        className="btn btn-outline-danger btn-sm mt-2 remove-img-btn" 
+                                        onClick={removeImage}
+                                    >
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
+                                </>
+                            ) : (
+                                <FaUserCircle size={80} color="#ccc" />
+                            )}
+                        </div>
+                        
+                        <label htmlFor="profile_image" className="d-block mt-2 image-label" >
+                            {imagePreview ? "Change Photo" : "Upload Profile Photo (Optional)"}
+                        </label>
+                        <input 
+                            type="file" 
+                            id="profile_image" 
+                            accept="image/*"
+                            style={{display: 'none'}}
+                            {...register("profile_image")}
+                            onChange={(e) => {
+                                register("profile_image").onChange(e); 
+                                handleImageChange(e);
+                            }}
+                        />
+                    </div>
                     <div className="form-group">
                         <label htmlFor="reg_username">Username *</label>
                         <input 
@@ -201,7 +248,7 @@ function SignUp({ api_url }) {
                         <label htmlFor="role" className="mb-0">Sign up as a vendor?</label>
                     </div>
 
-                    <button type="submit" onClick={scrollToTop}>Sign Up</button>
+                    <button type="submit" className='submit_btn' onClick={scrollToTop}>Sign Up</button>
                 </form>
 
                 <p className="switch-auth">

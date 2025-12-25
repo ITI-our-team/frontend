@@ -2,6 +2,7 @@ import './Navbar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState, useRef } from 'react'
 import toast from 'react-hot-toast'
+import { FaUserCircle } from "react-icons/fa";
 
 function Navbar({ api_url }) {
 
@@ -13,6 +14,7 @@ function Navbar({ api_url }) {
     const navigate = useNavigate();
     const userToken = localStorage.getItem("userToken");
     const username = localStorage.getItem("username");
+    const profile_image = localStorage.getItem("profile_image");
     const role = localStorage.getItem("role");
     function btnlogout() {
         toast((t) => (
@@ -127,7 +129,7 @@ function Navbar({ api_url }) {
                 <nav>
                     <div className="part-one">
                         <div className="logo">
-                            <p>WEDORA <i class="fa-solid fa-crown"></i></p>
+                            <p>WEDORA <i className="fa-solid fa-crown"></i></p>
                         </div>
 
                         <div className="menu">
@@ -166,9 +168,15 @@ function Navbar({ api_url }) {
                                 )}
                                 <Link to="/updateinfo">
                                     {/* this button only shows for vendors accounts */}
-                                    <button className="update-info-btn">Update Info <i class="fa-solid fa-wrench"></i></button>
+                                    <button className="update-info-btn">Update Info <i className="fa-solid fa-wrench"></i></button>
                                 </Link>
-                                <button className="logout-btn" onClick={btnlogout}>Logout <i class="fa-solid fa-right-to-bracket"></i></button>
+                                <button className="logout-btn" onClick={btnlogout}>Logout <i className="fa-solid fa-right-to-bracket"></i></button>
+                                <div className="profile-img-container">
+                                    {profile_image != null?
+                                        <img src={profile_image} className="profile-prev-img" />:
+                                        <FaUserCircle size={45} color="#ccc" />
+                                    }
+                                </div>
                             </div>
                         </>
                     ) : (

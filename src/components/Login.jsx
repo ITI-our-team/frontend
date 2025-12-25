@@ -48,6 +48,9 @@ function Login({ api_url }) {
                 localStorage.setItem('role', result.role);
                 localStorage.setItem('user_id', result.id);
                 localStorage.setItem('phone_number', result.phone_number);
+                if (result.profile_image != null){
+                    localStorage.setItem('profile_image', result.profile_image);
+                }
                 localStorage.setItem('isLoggedIn', true);
                 // dispatch(login({
                 //     email: result.email,
