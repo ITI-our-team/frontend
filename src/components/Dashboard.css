@@ -13,9 +13,13 @@
 }
 
 .my-services {
-    background-color: rgba(30, 24, 18, 0.897);
+    background-color: hsl(25 35% 25%);
     padding: 20px 15px;
     
+}
+
+.thead-table tr{
+    background-color: hsl(30 20% 85%);
 }
 
 .para-serv {
@@ -55,10 +59,11 @@
     font-size: 50px;
     font-weight: bold;
     color: var(--color-btn-dark-hover);
+    font-family: "Playfair Display", Georgia, serif;;
 }
 
 .part-booking h1:nth-of-type(2) {
-    font-size: 32px;
+    font-size: 28px;
     color: var(--color-primary);
     padding: 0;
     margin: 0;
@@ -67,11 +72,12 @@
 .bookings-section {
     flex: 1;
     overflow: hidden;
-    border-top: 8px solid #35302a;
-    border-bottom: 8px solid #35302a;
     padding-right: 10px;
-    margin-top: 30px;
+        margin: 30px 40px;
     height: 55vh;
+    border-radius: 7px;
+        box-shadow: 0px 0px 11px 0px gray;
+
 }
 
 .part-booking{
@@ -107,10 +113,10 @@
 }
 
 .add-btn {
-    padding: 6px 45px;
+    padding: 10px 80px;
     border: none;
-    background-color: #6a5148;
-    font-weight: 500;
+    background-color: hsl(25 35% 25%);
+    font-size: 18px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 0px gray;
     color: white;
@@ -119,7 +125,7 @@
     transition: .5s;
 }
 .add-btn:hover{
-    background-color: #5b453e;
+    background-color: hsla(25, 35%, 25%, 0.895);
 }
 
 

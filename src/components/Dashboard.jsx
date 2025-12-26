@@ -128,7 +128,7 @@ function Dashboard({ api_url }) {
                     {/* <h2 className=''>Recent Booking Requests</h2> */}
                     <div className="table-responsive bg-white p-3 rounded shadow-sm">
                         <table className="table table-hover align-middle">
-                            <thead className="table-striped">
+                            <thead className="table-striped thead-table">
                                 <tr>
                                     <th>Service</th>
                                     <th>Date</th>
@@ -166,7 +166,7 @@ function Dashboard({ api_url }) {
                     </div>
                 </div>
                 <button className='add-btn' onClick={scrollToTop}>
-                    <Link to="/newservice"> Add a new Service </Link>
+                    <Link to="/newservice"> + Add a new Service </Link>
                 </button>
             </div>
 
