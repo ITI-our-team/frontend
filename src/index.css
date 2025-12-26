@@ -15,6 +15,7 @@
   --color-smtext:#9c9c9c;
   --color-paragraph:#9b907f;
   --color-small-pg:#574d3f;
+  --color-text-navbar: #5e4238;
 
   
   --font-size-big-text: 2.5rem;   /* 1rem = 16px*/
@@ -22,6 +23,7 @@
   --font-size-smtext: 1.2rem;
   --font-size-btns: 1.125rem;
   --line-height: 1.6;
+  --font-size-btns:18px;
 }
 
 * {

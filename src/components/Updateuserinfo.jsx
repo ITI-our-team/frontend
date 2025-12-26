@@ -224,10 +224,8 @@ function Updateuserinfo({api_url}) {
                     </div>
                     
                     <button type="submit" className='form-info-btn'>Update information</button>
+                    <button className= 'cancel-btn' onClick={cancel} >Cancel Editing</button>
                 </form>
-            <div className='div-cancel-btn'>
-                <button className= 'cancel-btn' onClick={cancel} >Cancel Editing</button>
-            </div>
         </div>
         </section>
     )

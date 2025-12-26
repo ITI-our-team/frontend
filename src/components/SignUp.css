@@ -6,8 +6,11 @@
     padding: 85px 0;
 }
 
-.Signup-box {
-    padding: 40px;
+
+.text-center {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    line-height: var(--line-height);
 }
 
 .Signup-box h2 {
@@ -24,7 +27,7 @@
 .Signup-box input,
 .update_label {
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     border-radius: 8px;
     border: 1px solid #ddd;
 }
@@ -40,7 +43,11 @@
 }
 
 .signupform {
-    justify-self: center;
+        justify-self: center;
+    box-shadow: 0px 0px 20px 0px #5f4c2836;
+    width: 500px;
+    padding: 25px;
+    border-radius: 18px;
 }
 
 #role {
@@ -66,7 +73,6 @@
 .input-container input {
     width: 100%;
     padding-right: 45px;
-    /* Leave space for the button */
 }
 
 .password-toggle-btn,
@@ -142,5 +148,25 @@
     .profile-image-container.update-page{
         height: 110px;
     }
+
+    .signupform {
+    width: 95%;
+    padding: 16px;
+}
+.text-center{
+    font-size: 20px;
+}
+.image-label{
+    font-size: 16px;
+}
+.Signup-box input, .update_label {
+    padding: 6px;
+}
+
+.Signup-box{
+    padding-top: 20px;
+}
+
+
 
 }

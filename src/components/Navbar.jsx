@@ -8,7 +8,7 @@ function Navbar({ api_url }) {
 
     const location = useLocation()
     const [open, setOpen] = useState(false)
-
+    const [openUserMenu, setOpenUserMenu] = useState(false);
     const menuRef = useRef(null)
     const btnRef = useRef(null)
     const navigate = useNavigate();
@@ -127,7 +127,7 @@ function Navbar({ api_url }) {
         <section className="nav-section">
             <div className="container">
                 <nav>
-                    <div className="part-one">
+                    
                         <div className="logo">
                             <p>WEDORA <i className="fa-solid fa-crown"></i></p>
                         </div>
@@ -151,7 +151,7 @@ function Navbar({ api_url }) {
                                 </button>
                             </Link>
                         </div>
-                    </div>
+                    
                     {username ? (
                         <>
                             <div className="btns">
@@ -161,21 +161,36 @@ function Navbar({ api_url }) {
                                         <button className="dashboard-btn">Dashboard</button>
                                     </Link>
                                 )}
-                                {role === "customer" && (
-                                    <Link to="/my-bookings">
-                                        <button className="my-booking-btn">My Bookings</button>
-                                    </Link>
-                                )}
-                                <Link to="/updateinfo">
-                                    {/* this button only shows for vendors accounts */}
-                                    <button className="update-info-btn">Update Info <i className="fa-solid fa-wrench"></i></button>
-                                </Link>
-                                <button className="logout-btn" onClick={btnlogout}>Logout <i className="fa-solid fa-right-to-bracket"></i></button>
-                                <div className="profile-img-container">
-                                    {profile_image != null?
-                                        <img src={profile_image} className="profile-prev-img" />:
-                                        <FaUserCircle size={45} color="#ccc" />
-                                    }
+
+                                <div className="user-menu-wrapper">
+                                    <div
+                                        className={`profile-img-container ${openUserMenu ? "active-user" : ""}`}
+                                        onClick={() => setOpenUserMenu(!openUserMenu)}
+                                    >
+                                        {profile_image ? (
+                                            <img src={profile_image} className="profile-prev-img" />
+                                        ) : (
+                                            <FaUserCircle size={45} color="#bab7b7" />
+                                        )}
+                                    </div>
+
+                                    {openUserMenu && (
+                                        <div className="user-dropdown">
+                                            {role === "customer" && (
+                                                <Link to="/my-bookings"> <i class="fa-regular fa-rectangle-list"></i>My Bookings</Link>
+                                            )}
+
+                                            <Link to="/updateinfo"><i class="fa-solid fa-gear"></i> Update Info</Link>
+                                            <hr />
+                                            <button
+                                                className="logout-item"
+                                                onClick={btnlogout}
+                                            >
+                                                <i class="fa-solid fa-arrow-right-from-bracket"> </i>
+                                                Logout
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </>
