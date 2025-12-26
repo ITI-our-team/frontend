@@ -258,6 +258,7 @@
         font-size: 22px;
         border: none;
         cursor: pointer;
+        display: block;
     }
 
     .mobile-add {

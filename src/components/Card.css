@@ -40,7 +40,7 @@
 /* responsive */
 @media (max-width: 768px) {
     .about-card {
-        height: 80px;
+        height: 65px;
         display: flex;
         align-items: center;
     }
