@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import './Dashboard.css'
 
 function Dashboard({ api_url }) {
+    const [openServices, setOpenServices] = useState(false);
     const navigate = useNavigate();
     const [bookings, setBookings] = useState([]);
     const scrollToTop = () => {
@@ -118,78 +119,105 @@ function Dashboard({ api_url }) {
             </section>
         );
     }
+
+
     return (
-        <section className='dashboard-section'>
-            {/* <div className="container"> */}
-            <div className="part-booking">
-                <h1 className='text-center'>Vendor Dashboard</h1>
-                <h1 className='text-center'>welcome {username} <i class="fa-regular fa-face-smile-beam"></i></h1>
-                <div className="bookings-section ">
-                    {/* <h2 className=''>Recent Booking Requests</h2> */}
-                    <div className="table-responsive bg-white p-3 rounded shadow-sm">
-                        <table className="table table-hover align-middle">
-                            <thead className="table-striped thead-table">
-                                <tr>
-                                    <th>Service</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {bookings.length > 0 ? bookings.map(book => (
-                                    <tr key={book.id}>
-                                        <td>
-                                            <Link to={`/bookings/${book.id}`} className="text-decoration-none fw-bold">
-                                                {book.service_name}
-                                            </Link>
-                                        </td>
-                                        <td>{book.booking_date}</td>
-                                        <td>{book.start_time} - {book.end_time}</td>
-                                        <td><span className={getStatusClass(book.status)}>{book.status}</span></td>
-                                        <td>
-                                            {book.status === 'pending' && (
-                                                <div className="btn-group btn-group-sm">
-                                                    <button onClick={() => updateBookingStatus(book.id, 'confirmed')} className="btn btn-outline-success">Confirm <i class="fa-solid fa-circle-check"></i></button>
-                                                    <button onClick={() => updateBookingStatus(book.id, 'cancelled')} className="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                                                </div>
-                                            )}
-                                            {book.status === 'confirmed' && (
-                                                <button onClick={() => updateBookingStatus(book.id, 'completed')} className="btn btn-sm btn-outline-primary">Mark Completed <i class="fa-solid fa-eye"></i></button>
-                                            )}
-                                        </td>
+        <>
+
+            <div
+                className={`overlay ${openServices ? "show" : ""}`}
+                onClick={() => setOpenServices(false)}
+            ></div>
+
+            <section className='dashboard-section'>
+                <div className="part-booking">
+                    <h1 className='text-center'>Vendor Dashboard</h1>
+                    <h1 className='text-center'>welcome {username} <i class="fa-regular fa-face-smile-beam"></i></h1>
+                    <button
+                        className="show-services-btn"
+                        onClick={() => setOpenServices(true)}
+                    >
+                        Show Your Services
+                    </button>
+                    <div className="bookings-section ">
+                        {/* <h2 className=''>Recent Booking Requests</h2> */}
+                        <div className="table-responsive bg-white p-3 rounded shadow-sm">
+                            <table className="table table-hover align-middle">
+                                <thead className="table-striped thead-table">
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
-                                )) : <tr><td colSpan="5" className="text-center">No bookings found.</td></tr>}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {bookings.length > 0 ? bookings.map(book => (
+                                        <tr key={book.id}>
+                                            <td>
+                                                <Link to={`/bookings/${book.id}`} className="text-decoration-none fw-bold">
+                                                    {book.service_name}
+                                                </Link>
+                                            </td>
+                                            <td>{book.booking_date}</td>
+                                            <td>{book.start_time} - {book.end_time}</td>
+                                            <td><span className={getStatusClass(book.status)}>{book.status}</span></td>
+                                            <td>
+                                                {book.status === 'pending' && (
+                                                    <div className="btn-group btn-group-sm">
+                                                        <button onClick={() => updateBookingStatus(book.id, 'confirmed')} className="btn btn-outline-success">Confirm <i class="fa-solid fa-circle-check"></i></button>
+                                                        <button onClick={() => updateBookingStatus(book.id, 'cancelled')} className="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    </div>
+                                                )}
+                                                {book.status === 'confirmed' && (
+                                                    <button onClick={() => updateBookingStatus(book.id, 'completed')} className="btn btn-sm btn-outline-primary">Mark Completed <i class="fa-solid fa-eye"></i></button>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    )) : <tr><td colSpan="5" className="text-center">No bookings found.</td></tr>}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                    <button className='add-btn' onClick={scrollToTop}>
+                        <Link to="/newservice"> + Add a new Service </Link>
+                    </button>
                 </div>
-                <button className='add-btn' onClick={scrollToTop}>
-                    <Link to="/newservice"> + Add a new Service </Link>
-                </button>
-            </div>
 
 
-            <div className="my-services">
-                <div className="para-serv">
-                    <hr />
-                    <p>Your Services</p>
-                    <hr />
-                </div>
-                
-                <div className="cards-service">
-                    {myData.map(service => (
-                        <Service
-                            key={service.id}
-                            service={service}
-                        />
-                    ))}
-                </div>
-            </div>
+                <div className={`my-services ${openServices ? "open" : ""}`}>
 
-            {/* </div> */}
-        </section>
+                    <div className="para-serv">
+                        <div className="para-serv-header">
+                            <p>Your Services</p>
+                            <button
+                                className="close-services"
+                                onClick={() => setOpenServices(false)}
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        <hr />
+                    </div>
+
+                    <div className="cards-service">
+                        {myData.map(service => (
+                            <Service
+                                key={service.id}
+                                service={service}
+                            />
+                        ))}
+                    </div>
+
+                    <button className='add-btn-slider' onClick={scrollToTop}>
+                        <Link to="/newservice"> + Add a new Service </Link>
+                    </button>
+                </div>
+
+
+            </section>
+        </>
     )
 }
 
