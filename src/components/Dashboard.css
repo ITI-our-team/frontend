@@ -26,7 +26,7 @@
     margin: 40px 0;
 }
 
-.para-serv>p,
+.para-serv-header>p,
 .para-serv hr {
     color: antiquewhite;
     text-align: center;
@@ -130,6 +130,12 @@
     background-color: hsla(25, 35%, 25%, 0.895);
 }
 
+.show-services-btn{
+    display: none;
+}
+.close-services{
+    display: none;
+}
 
 /* responsive */
 @media (max-width: 768px) {
