@@ -1,0 +1,27 @@
+.form-info-btn{
+    width: 100%;
+    border: none;
+    background-color: lawngreen;
+    padding: 7px;
+    border-radius: 6px;
+    transition: .5s;
+        margin: 30px 0
+}
+.form-info-btn:hover{
+    background-color: rgb(110, 220, 0);
+}
+.div-cancel-btn{
+        text-align: center;
+}
+.cancel-btn{
+padding: 4px 40px;
+    color: white;
+    background-color: #c81e1e;
+    border-radius: 5px;
+    border: none;
+    transition: .2s;
+}
+
+.cancel-btn:hover{
+    background-color: #af1a1a;
+}

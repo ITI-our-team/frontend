@@ -13,6 +13,7 @@ function Card({ id, title, imge }) {
                     <p className='title-card'>{title}</p>
                 </div>
             </div>
+            
         </Link>
     )
 }

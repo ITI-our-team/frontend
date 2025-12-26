@@ -30,7 +30,7 @@
     font-size: var(--font-size-big-text);
     margin-bottom: 1rem;
     text-shadow: -9px 5px 5px rgba(0, 0, 0, 0.5);
-    color: var(--color-text);
+    color: var(--color-bg);
     font-family: serif;
 }
 
@@ -55,7 +55,7 @@
     font-size: 1.2rem;
     margin-bottom: 2rem;
     line-height: var(--line-height);
-    color: var(--color-paragraph);
+    color: var(--color-text);
 }
 
 .hero-content button {
@@ -110,6 +110,11 @@
 
     .hero-content h2 {
         font-size: 30px;
+    }
+
+    .hero-content button{
+                width: 100%;
+        padding: 6px 0;
     }
 
 }

@@ -143,7 +143,7 @@
                             <div className="details-hero-form">
                                 {role == "customer" ? <Form service={service} api_url={api_url} /> :
                                     <>
-                                        <h5>please use a customer account to make a booking</h5>
+                                        <h5 >please use a customer account to make a booking</h5>
                                     </>}
                             </div>
                             <div className="more-details col-md-6 col-12">

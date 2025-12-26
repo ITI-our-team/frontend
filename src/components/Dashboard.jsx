@@ -1,20 +1,21 @@
 import React from 'react'
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Service from './Service.jsx';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import './Dashboard.css'
 
-function Dashboard({api_url}) {
+function Dashboard({ api_url }) {
     const navigate = useNavigate();
     const [bookings, setBookings] = useState([]);
     const scrollToTop = () => {
-        window.scrollTo({ top:0,left: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
     const [isLoading, setIsLoading] = useState(false);
     const [myData, setMyData] = useState([]);
-    const userToken = localStorage.getItem("userToken"); 
-    const username = localStorage.getItem("username"); 
+    const userToken = localStorage.getItem("userToken");
+    const username = localStorage.getItem("username");
     async function getservices() {
         setIsLoading(true);
         const API_URL = `${api_url}api/services/?vendor=${username}`;
@@ -22,8 +23,8 @@ function Dashboard({api_url}) {
             const response = await fetch(API_URL, {
                 method: 'GET',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${userToken}` 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userToken}`
                 }
             });
             const result = await response.json();
@@ -40,7 +41,7 @@ function Dashboard({api_url}) {
             // alert("A network error occurred. Please try again.");
             toast.error("A network error occurred while fetching services.");
         } finally {
-            setIsLoading(false); 
+            setIsLoading(false);
         }
     }
     async function getbookings() {
@@ -94,7 +95,7 @@ function Dashboard({api_url}) {
 
     // Helper to style status badges
     const getStatusClass = (status) => {
-        switch(status) {
+        switch (status) {
             case 'confirmed': return 'badge bg-success';
             case 'cancelled': return 'badge bg-danger';
             case 'completed': return 'badge bg-secondary';
@@ -105,25 +106,26 @@ function Dashboard({api_url}) {
         return (
             <section className='container my-5 text-center'>
                 <div className="login-box">
-                <h2 className='py-3'>Loading Data ...</h2>
-                <div className="spinner-border align-center text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-                <div className="py-4"> </div>
-                <div className="py-4"> </div>
-                <div className="py-4"> </div>
-                <div className="py-4"> </div>
+                    <h2 className='py-3'>Loading Data ...</h2>
+                    <div className="spinner-border align-center text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                    <div className="py-4"> </div>
+                    <div className="py-4"> </div>
+                    <div className="py-4"> </div>
+                    <div className="py-4"> </div>
                 </div>
             </section>
         );
     }
     return (
-        <section className='weddingVenue-section'>
-            <div className="container">
-                <h1 className='text-center mt-4'>Vendor Dashboard</h1>
-                <h1 className='text-center'>welcome {username}</h1>
-                <div className="bookings-section my-5">
-                    <h2 className='mb-4'>Recent Booking Requests</h2>
+        <section className='dashboard-section'>
+            {/* <div className="container"> */}
+            <div className="part-booking">
+                <h1 className='text-center'>Vendor Dashboard</h1>
+                <h1 className='text-center'>welcome {username} <i class="fa-regular fa-face-smile-beam"></i></h1>
+                <div className="bookings-section ">
+                    {/* <h2 className=''>Recent Booking Requests</h2> */}
                     <div className="table-responsive bg-white p-3 rounded shadow-sm">
                         <table className="table table-hover align-middle">
                             <thead className="table-striped">
@@ -140,7 +142,7 @@ function Dashboard({api_url}) {
                                     <tr key={book.id}>
                                         <td>
                                             <Link to={`/bookings/${book.id}`} className="text-decoration-none fw-bold">
-                                            {book.service_name}
+                                                {book.service_name}
                                             </Link>
                                         </td>
                                         <td>{book.booking_date}</td>
@@ -149,12 +151,12 @@ function Dashboard({api_url}) {
                                         <td>
                                             {book.status === 'pending' && (
                                                 <div className="btn-group btn-group-sm">
-                                                    <button onClick={() => updateBookingStatus(book.id, 'confirmed')} className="btn btn-outline-success">Confirm</button>
-                                                    <button onClick={() => updateBookingStatus(book.id, 'cancelled')} className="btn btn-outline-danger">Cancel</button>
+                                                    <button onClick={() => updateBookingStatus(book.id, 'confirmed')} className="btn btn-outline-success">Confirm <i class="fa-solid fa-circle-check"></i></button>
+                                                    <button onClick={() => updateBookingStatus(book.id, 'cancelled')} className="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
                                                 </div>
                                             )}
                                             {book.status === 'confirmed' && (
-                                                <button onClick={() => updateBookingStatus(book.id, 'completed')} className="btn btn-sm btn-outline-primary">Mark Completed</button>
+                                                <button onClick={() => updateBookingStatus(book.id, 'completed')} className="btn btn-sm btn-outline-primary">Mark Completed <i class="fa-solid fa-eye"></i></button>
                                             )}
                                         </td>
                                     </tr>
@@ -163,10 +165,20 @@ function Dashboard({api_url}) {
                         </table>
                     </div>
                 </div>
-                <button className='btn btn-info my-4' onClick={scrollToTop}> 
+                <button className='add-btn' onClick={scrollToTop}>
                     <Link to="/newservice"> Add a new Service </Link>
                 </button>
-                <div className="cards">
+            </div>
+
+
+            <div className="my-services">
+                <div className="para-serv">
+                    <hr />
+                    <p>Your Services</p>
+                    <hr />
+                </div>
+                
+                <div className="cards-service">
                     {myData.map(service => (
                         <Service
                             key={service.id}
@@ -174,7 +186,9 @@ function Dashboard({api_url}) {
                         />
                     ))}
                 </div>
-        </div>
+            </div>
+
+            {/* </div> */}
         </section>
     )
 }

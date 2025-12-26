@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 import { FaUserCircle } from "react-icons/fa";
+import './Updateuserinfo.css'
 
 function Updateuserinfo({api_url}) {
     const navigate = useNavigate();
@@ -222,10 +223,10 @@ function Updateuserinfo({api_url}) {
                         </div>
                     </div>
                     
-                    <button type="submit">Update information</button>
+                    <button type="submit" className='form-info-btn'>Update information</button>
                 </form>
-            <div className="col-3 mx-auto mt-2 ">
-                <button className='bg-danger' onClick={cancel}>Cancel Editing</button>
+            <div className='div-cancel-btn'>
+                <button className= 'cancel-btn' onClick={cancel} >Cancel Editing</button>
             </div>
         </div>
         </section>

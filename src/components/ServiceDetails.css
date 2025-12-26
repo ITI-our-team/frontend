@@ -32,6 +32,13 @@
 
 .details-hero-form {
     grid-row: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-hero-form h5{
+        text-align: center;
 }
 
 .extra-images {

@@ -96,6 +96,7 @@ function Services({ api_url }) {
 
                         return (
                             <div key={section.slug} className={`${section.slug}-section section`}>
+                                <hr />
                                 <div className="header">
                                     <h2>{section.title}</h2>
                                     <Link to={section.link} onClick={scrollToTop} ><p>All {section.title}</p></Link>

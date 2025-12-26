@@ -1,11 +1,11 @@
-
-.card{
+.card {
     background: #fff;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease;
     cursor: pointer;
+    border: none;
 }
 
 .card-img {
@@ -13,11 +13,11 @@
     height: 250px;
 }
 
-.card-img::after{
+.card-img::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.25); 
+    background: rgba(0, 0, 0, 0.25);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -27,8 +27,8 @@
 }
 
 
-.about-card{
-    padding: 10px ;
+.about-card {
+    padding: 10px;
 }
 
 .title-card {
@@ -37,4 +37,11 @@
     color: var(--color-paragraph);
 }
 
-
+/* responsive */
+@media (max-width: 768px) {
+    .about-card {
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+}

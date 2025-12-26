@@ -1,5 +1,4 @@
 .Signup-page {
-    /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,14 +13,16 @@
 .Signup-box h2 {
     text-align: center;
     margin-bottom: 20px;
-    color:var(--color-secondary);
+    color: var(--color-secondary);
 }
+
 .Signup-box p {
     text-align: center;
     margin-bottom: 40px;
 }
 
-.Signup-box input ,.update_label{
+.Signup-box input,
+.update_label {
     width: 100%;
     padding: 12px;
     /* margin-bottom: 15px; */
@@ -39,10 +40,11 @@
     cursor: pointer;
 }
 
-.signupform{
+.signupform {
     justify-self: center;
 }
-#role{
+
+#role {
     width: auto;
 }
 
@@ -64,10 +66,12 @@
 
 .input-container input {
     width: 100%;
-    padding-right: 45px; /* Leave space for the button */
+    padding-right: 45px;
+    /* Leave space for the button */
 }
 
-.password-toggle-btn, .toggle-icon {
+.password-toggle-btn,
+.toggle-icon {
     position: absolute;
     right: 10px;
     background: none;
@@ -84,7 +88,8 @@
 .password-toggle-btn:hover {
     color: #007bff;
 }
-.leaflocation_minimap{
+
+.leaflocation_minimap {
     height: 300px;
     width: 100%;
     margin-block: 20px;
@@ -112,16 +117,31 @@
 .remove-img-btn:hover {
     transform: scale(1.1);
 }
-.image-label{
+
+.image-label {
     cursor: pointer;
     color: var(--color-small-pg);
     font-weight: bold;
 }
-.profile-image-container.update-page{
+
+.profile-image-container.update-page {
+    width: 150px;
+    height: 120px;
+}
+
+.profile-preview-img.update-page {
     width: 150px;
     height: 150px;
 }
-.profile-preview-img.update-page{
-    width: 150px;
-    height: 150px;
+
+
+/* responsive */
+@media (max-width: 768px) {
+    .Signup-page {
+        padding: 65px 0;
+    }
+    .profile-image-container.update-page{
+        height: 110px;
+    }
+
 }
