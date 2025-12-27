@@ -26,7 +26,9 @@
 .portfolio-one__slider {
   position: relative;
   display: flex;
-margin: 30px 0;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  margin: 30px 0;
   justify-content: space-around;
 }
 

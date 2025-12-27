@@ -145,7 +145,7 @@ function Navbar({ api_url }) {
                                 </button>
                             </Link>
 
-                            <Link to="/">
+                            <Link to="/projects">
                                 <button className={location.pathname === "/projects" ? "active" : ""}>
                                     projects
                                 </button>
