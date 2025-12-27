@@ -25,7 +25,7 @@ function Project({ limit }) {
                 <span className="section-title__triangle-left"></span>
                 <span className="section-title__triangle-right"></span>
               </div>
-              <h2 className="section-title__tagline">Our Completed Projects</h2>
+              <h2 className="section-title__tagline">Our Completed Blogs</h2>
             </div>
           </div>
         </div>

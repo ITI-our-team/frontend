@@ -73,6 +73,7 @@ nav {
         transform 0.2s ease;
 }
 
+
 .menu button::after {
     content: "";
     position: absolute;
@@ -291,7 +292,7 @@ nav {
 
     .mobile-menu .signup {
         background: var(--color-btn);
-        color: var(--color-secondary);
+        color:whitesmoke;
         padding: 10px;
         text-align: center;
         border-radius: 6px;

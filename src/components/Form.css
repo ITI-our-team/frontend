@@ -73,19 +73,43 @@
 
 /* responsive */
 @media (max-width: 768px) {
-    .form-section {
-        padding: 0;
-        width: 100%;
-        margin: 20px auto;
-    }
 
-    .form-section input,
-    .form-section textarea {
-        width: 100%;
+    .form-section {
+        padding: 16px;
+        margin: 20px auto;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgb(0 0 0 / 12%);
+        width: 95%;
     }
 
     .two-inputs {
         flex-direction: column;
+        gap: 10px;
     }
 
+    .extras-container {
+        padding: 12px;
+    }
+
+    .price-display-card {
+        padding: 12px;
+    }
+
+    .form-section button {
+        width: 100%;
+    }
+
+    .unavailable-info ul {
+        padding-left: 16px;
+        margin: 4px 0;
+    }
+
+    .two-inputs input,
+    .form-section textarea,
+    .form-section select {
+        width: 100%;
+    }
+    
 }

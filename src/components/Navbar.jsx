@@ -141,13 +141,13 @@ function Navbar({ api_url }) {
 
                         <Link to="/services">
                             <button className={location.pathname.startsWith("/services") ? "active" : ""}>
-                                venues and vendors
+                                Venues and Vendors
                             </button>
                         </Link>
 
                             <Link to="/projects">
                                 <button className={location.pathname === "/projects" ? "active" : ""}>
-                                    projects
+                                    Blogs
                                 </button>
                             </Link>
                         </div>

@@ -30,11 +30,12 @@
 /* ===== Extra Images ===== */
 .extra-images {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 12px;
     overflow-x: auto;
     scrollbar-width: thin;
+    margin: 20px 0;
 }
 
 .extra-images::-webkit-scrollbar {
@@ -86,10 +87,11 @@
 
 .more-details h5 {
     color: var(--color-primary);
+        font-size: 18px;
 }
 
 .more-details p {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 20px;
     font-weight: 400;
     color: var(--color-secondary);
@@ -124,7 +126,6 @@
     grid-template-areas: "images" "details";
     gap: 20px;
 }
-
 
 .details-hero-images {
     grid-area: images;
@@ -161,7 +162,12 @@
     background-color: #7c1b1b;
 }
 
+    .details-hero .card-img{
+        height: 200px;
+    }
+
 /* ===== Responsive ===== */
+
 @media (max-width: 992px) {
 
     .details-hero-images,
@@ -209,12 +215,37 @@
 
 @media (max-width: 768px) {
 
+    .details-hero.with-form {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "images"
+        "details"
+        "form";
+    }
+
+    .btns-admin {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 70px;
+    }
+
+    .edit-btn {
+        padding: 4px 11px;
+        width: auto;
+    }
+
+    .delete-btn {
+        background-color: #a51111;
+        width: auto;
+    }
+
     .service-details-section {
-        padding: 120px 20px 34px;
+        padding: 100px 20px 34px;
     }
 
     .service-details-section h1 {
-        margin-bottom: 24px;
+                margin: 10px;
+                font-size: 28px;
     }
 
     .details-hero {
@@ -227,11 +258,22 @@
         gap: 15px;
     }
 
-    .details-hero-images,
-    .details-hero-form,
-    .more-details {
+    .details-hero-images{
         width: 100%;
-        margin: 20px 0
+        margin:  10px 0;
+    }
+
+    .details-hero-form{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .more-details{
+        width: 100%;
+        margin:  0;
+    }
+
+    .more-details{
+        width: 100%;
     }
 
     .img-details img {
@@ -252,9 +294,21 @@
         grid-template-columns: 1fr;
         gap: 0;
     }
+    .extra-images {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 30px;
+    }
+    /* .card-img {
+        height: auto;
+    } */
+
+    .details-hero .card-img{
+        height: 200px;
+    }
+
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .details-hero.no-form {
         display: grid;
         grid-template-columns: 1fr;
@@ -282,6 +336,8 @@
     }
 
     .extra-images {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 30px;
     }
-}
+
+} */

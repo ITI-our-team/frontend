@@ -221,7 +221,7 @@ function Form({ service, api_url }) {
                     <textarea name="message" value={formData.message}
                         placeholder="Enter the message you want"
                         onChange={handleChange} rows="4"></textarea>
-                    <div className="price-display-card mb-3 p-3 rounded bg-dark text-white text-center shadow">
+                    <div className="price-display-card mb-3  rounded bg-dark text-white text-center shadow" style={{ fontSize: "16px" }}>
                         <div className="d-flex justify-content-between px-3">
                             <span>Base Price:</span>
                             <span>{basePrice.toLocaleString()} L.E.</span>
