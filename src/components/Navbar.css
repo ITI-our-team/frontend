@@ -85,6 +85,10 @@ nav {
     transform: translateX(-50%);
 }
 
+.nav-section.scrolled .mobile-menu-btn span{
+    background-color: var(--color-text-navbar);
+}
+
 .menu button.active::after {
     width: 100%;
 }
@@ -143,58 +147,11 @@ nav {
 .get-start:hover {
     background: rgba(25, 18, 3, 0.897);
 }
-.my-booking-btn,
-.update-info-btn,
-.logout-btn,
-.dashboard-btn{
-    border: none;
-    padding: 3px;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: .3s;
-}
-.my-booking-btn,
-.dashboard-btn{
-        /* background-color: #331d085c; */
-    background-color: #f1dfcf;
-    color: black;
-    padding: 5px 10px;
-    border: none;
-}
-.my-booking-btn:hover,
-.dashboard-btn:hover{
-    color: wheat;
-}
-.my-booking-btn:hover,
-.update-info-btn:hover,
-.dashboard-btn:hover{
-    background-color: #d49a6353;
-}
-.update-info-btn{
-background-color: transparent;
-    color: #f5e8ce;
-    padding: 5px 10px;
-}
-.logout-btn{
-    background-color: transparent;
-    color: whitesmoke;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-}
-.logout-btn i {
-    transition: transform 0.3s ease;
-    margin-left: 6px;
-}
-.logout-btn:hover{
-    color: red;
-}
-.logout-btn:hover i {
-    transform: translateX(6px);
-}
 
 .welcome-para{
-    color: white;
+    color: var(--color-text-navbar);
+        font-size: 14px;
+    padding: 5px 0
 }
 
 .mobile-menu hr{
@@ -228,10 +185,14 @@ background-color: transparent;
     box-shadow: 0px 5px 20px 1px rgb(0 0 0 / 34%);
     padding: 10px 7px;
     z-index: 2000;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        transform 0.2s ease;
 }
 
 .user-dropdown a,
-.user-dropdown .logout-item {
+.user-dropdown .logout-item{
     display: block;
     padding: 7px 12px;
     color: var(--color-text-navbar);
@@ -245,7 +206,8 @@ background-color: transparent;
 }
 
 .user-dropdown a:hover,
-.user-dropdown .logout-item:hover {
+.user-dropdown .logout-item:hover,
+.user-dropdown .dashboard-btn :hover{
     background-color: #d8c6a8;
     border-radius: 7px;
 }
@@ -276,12 +238,8 @@ background-color: transparent;
 
     .mobile-menu {
         position: absolute;
-        top: 100%;
-        right: 14px;
-        background: #2b1f15;
-        border-radius: 5px;
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        top: 56px;
+        right: 20px;
         display: flex;
         flex-direction: column;
         opacity: 0;
@@ -290,6 +248,12 @@ background-color: transparent;
         transition:
             opacity 0.35s ease,
             transform 0.35s ease;
+    background-color: #f6f3ee;
+    border-radius: 8px;
+    width: 50%;
+    box-shadow: 0px 5px 20px 1px rgb(0 0 0 / 34%);
+    padding: 10px 12px;
+    z-index: 2000;
     }
 
     .mobile-menu-btn {
@@ -302,7 +266,7 @@ background-color: transparent;
     .mobile-menu-btn span {
         width: 25px;
         height: 3px;
-        background-color: whitesmoke;
+        background-color: antiquewhite;
         border-radius: 5px;
     }
 
@@ -315,12 +279,13 @@ background-color: transparent;
     .mobile-menu a {
         padding: 12px 0;
         text-decoration: none;
-        color: whitesmoke;
-        font-weight: 200;
+        color: var(--color-text-navbar);
+        font-weight: 400;
+        font-size: 12px;
     }
 
     .mobile-menu hr {
-        margin: 15px 0;
+        margin: 4px 0;
         opacity: 0.3;
     }
 
@@ -334,6 +299,23 @@ background-color: transparent;
 
     .nav-section.scrolled .logo p {
         font-size: 24px ;
+    }
+
+    .logout-item{
+            display: block;
+    padding: 7px 0;
+    color: #dc1414;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .9ms;
+    }
+
+    .logout-item i{
+        padding-right: 5px;
     }
     
 }

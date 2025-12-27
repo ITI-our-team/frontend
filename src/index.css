@@ -19,9 +19,9 @@
 
   
   --font-size-big-text: 2.5rem;   /* 1rem = 16px*/
-  --font-size-text: 1.4rem;
+  --font-size-text: 1.2rem;
   --font-size-smtext: 1.2rem;
-  --font-size-btns: 1.125rem;
+  /* --font-size-btns: 1.125rem; */
   --line-height: 1.6;
   --font-size-btns:18px;
 }

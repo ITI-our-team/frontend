@@ -127,40 +127,34 @@ function Navbar({ api_url }) {
         <section className="nav-section">
             <div className="container">
                 <nav>
-                    
-                        <div className="logo">
-                            <p>WEDORA <i className="fa-solid fa-crown"></i></p>
-                        </div>
 
-                        <div className="menu">
-                            <Link to="/">
-                                <button className={location.pathname === "/" ? "active" : ""}>
-                                    Home
-                                </button>
-                            </Link>
+                    <div className="logo">
+                        <p>WEDORA <i className="fa-solid fa-crown"></i></p>
+                    </div>
 
-                            <Link to="/services">
-                                <button className={location.pathname.startsWith("/services") ? "active" : ""}>
-                                    venues and vendors
-                                </button>
-                            </Link>
+                    <div className="menu">
+                        <Link to="/">
+                            <button className={location.pathname === "/" ? "active" : ""}>
+                                Home
+                            </button>
+                        </Link>
 
-                            <Link to="/">
-                                <button className={location.pathname === "/projects" ? "active" : ""}>
-                                    projects
-                                </button>
-                            </Link>
-                        </div>
-                    
+                        <Link to="/services">
+                            <button className={location.pathname.startsWith("/services") ? "active" : ""}>
+                                venues and vendors
+                            </button>
+                        </Link>
+
+                        <Link to="/">
+                            <button className={location.pathname === "/projects" ? "active" : ""}>
+                                projects
+                            </button>
+                        </Link>
+                    </div>
+
                     {username ? (
                         <>
                             <div className="btns">
-                                {(role === "vendor") && (
-                                    <Link to="/dashboard">
-                                        {/* this button only shows for vendors accounts */}
-                                        <button className="dashboard-btn">Dashboard</button>
-                                    </Link>
-                                )}
 
                                 <div className="user-menu-wrapper">
                                     <div
@@ -176,6 +170,14 @@ function Navbar({ api_url }) {
 
                                     {openUserMenu && (
                                         <div className="user-dropdown">
+
+                                            {(role === "vendor") && (
+                                                <Link to="/dashboard">
+                                                    {/* this button only shows for vendors accounts */}
+                                                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                                                </Link>
+                                            )}
+
                                             {role === "customer" && (
                                                 <Link to="/my-bookings"> <i class="fa-regular fa-rectangle-list"></i>My Bookings</Link>
                                             )}
@@ -220,7 +222,7 @@ function Navbar({ api_url }) {
                     ref={menuRef}
                     className={`mobile-menu ${open ? 'show' : ''}`}
                 >
-                    <p className="px-3 small  welcome-para">Welcome, {username}</p>
+                    <p className="welcome-para">Welcome, {username}</p>
                     <hr />
                     <Link to="/" onClick={() => setOpen(false)}>Home</Link>
                     <Link to="/services" onClick={() => setOpen(false)}>Venues & Vendors</Link>
@@ -230,7 +232,9 @@ function Navbar({ api_url }) {
                         <>
                             {role === 'vendor' && <Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link>}
                             <Link to="/updateinfo" onClick={() => setOpen(false)}>My Profile</Link>
-                            <button className="btn btn-danger btn-sm m-3" onClick={() => { setOpen(false); btnlogout(); }}>
+                            <hr />
+                            <button className="logout-item" onClick={() => { setOpen(false); btnlogout(); }}>
+                                <i class="fa-solid fa-arrow-right-from-bracket"> </i>
                                 Logout
                             </button>
                         </>
