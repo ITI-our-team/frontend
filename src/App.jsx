@@ -23,6 +23,8 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 import BookingDetails from "./components/BookingDetails"
 import MyBookings from "./components/MyBookings"
 import { Toaster } from 'react-hot-toast';
+import ProjectDetails from './components/ProjectDetails';
+
 
 function App() {
 const api_url = 'http://127.0.0.1:8000/';
@@ -47,7 +49,7 @@ const api_url = 'http://127.0.0.1:8000/';
           <Home />
           <AbouUs />
           <View />
-          <Project />
+          <Project limit={4}/>
           <Review />
         </>} />
         <Route path='/services' element={<Services api_url={api_url} />} />
@@ -64,6 +66,8 @@ const api_url = 'http://127.0.0.1:8000/';
         <Route path="/editservice/:id" element={<EditService api_url={api_url} />} />
         <Route path="/bookings/:id" element={<BookingDetails api_url={api_url} />} />
         <Route path="/my-bookings" element={<MyBookings api_url={api_url} />} />
+        <Route path='/projects' element={<Project api_url={api_url}  />}/>
+        <Route path="/project-details" element={<ProjectDetails />} />
       </Routes>
 
       <ScrollToTopButton />

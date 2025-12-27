@@ -145,13 +145,13 @@ function Navbar({ api_url }) {
                             </button>
                         </Link>
 
-                        <Link to="/">
-                            <button className={location.pathname === "/projects" ? "active" : ""}>
-                                projects
-                            </button>
-                        </Link>
-                    </div>
-
+                            <Link to="/projects">
+                                <button className={location.pathname === "/projects" ? "active" : ""}>
+                                    projects
+                                </button>
+                            </Link>
+                        </div>
+                    
                     {username ? (
                         <>
                             <div className="btns">
