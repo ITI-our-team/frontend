@@ -54,7 +54,7 @@ function Project({ limit }) {
         {/* Slider End */}
 
         <div className="button">
-          <Link to="/project-details" className="more-btn">
+          <Link to="/services" className="more-btn">
             <span className="-btn">Discover More</span>
           </Link>
         </div>

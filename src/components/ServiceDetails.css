@@ -1,5 +1,6 @@
+/* ===== Service Details Section ===== */
 .service-details-section {
-    padding: 120px 0 75px;
+    padding: 120px 20px 75px; 
     background-color: var(--color-bg-local);
 }
 
@@ -11,16 +12,12 @@
     font-weight: 800;
 }
 
+/* ===== Details Hero ===== */
 .details-hero {
-    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
     margin-bottom: 25px;
-}
-
-.img-details {
-    width: 100%;
-    margin-bottom: 20px;
 }
 
 .img-details img {
@@ -30,22 +27,23 @@
     border-radius: 12px;
 }
 
-.details-hero-form {
-    grid-row: span 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.details-hero-form h5{
-        text-align: center;
-}
-
+/* ===== Extra Images ===== */
 .extra-images {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); 
     gap: 12px;
     margin-bottom: 12px;
+    overflow-x: auto; 
+    scrollbar-width: thin;
+}
+
+.extra-images::-webkit-scrollbar {
+    height: 6px;
+}
+
+.extra-images::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
 }
 
 .card-img img {
@@ -54,19 +52,29 @@
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
-    object-fit: cover;
+    transition: transform 0.3s;
 }
 
 .card-img img:hover {
     transform: scale(1.05);
 }
 
+/* ===== Form Section ===== */
+.details-hero-form {
+    grid-row: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.details-hero-form h5 {
+    text-align: center;
+}
+
+/* ===== More Details ===== */
 .more-details {
     display: flex;
     flex-direction: column;
-    grid-column: span 1;
 }
 
 .more-details h5 {
@@ -80,44 +88,48 @@
     color: var(--color-secondary);
 }
 
+/* ===== Back Button ===== */
+.back-btn {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
 
-
-/* responsive */
-@media (max-width: 768px) {
-    /* .details-hero {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .details-hero {
+        grid-template-columns: 1fr; 
     }
 
+    .details-hero-form {
+        grid-row: auto;
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
     .img-details img {
-        height: auto;
+        height: auto; 
+    }
+
+    .more-details p {
+        font-size: 16px;
+    }
+
+    .back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .details-hero-form {
         width: 100%;
     }
 
     .extra-images {
         grid-template-columns: repeat(4, 1fr);
-        width: 100%;
     }
-
-    .extra-images .card-img img {
-        height: 80px;
-    }
-
-    .details-hero-form {
-        grid-row: auto;
-        width: 100%;
-    }
-
-    .more-details {
-        grid-column: span 1;
-        width: 100%;
-    }
-
-    .back-btn {
-        width: 100%;
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-    } */
 }
