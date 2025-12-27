@@ -3,7 +3,7 @@
     grid-template-columns: 4fr 1fr;
     direction: rtl;
     padding: 70px 0 0;
-    height: 100vh;
+    /* height: 100vh; */
     overflow: hidden;
     background-color: var(--color-bg-local);
 }
@@ -56,7 +56,7 @@
 }
 
 .part-booking h1:nth-of-type(1) {
-    font-size: 50px;
+    font-size: 38px;
     font-weight: bold;
     color: var(--color-btn-dark-hover);
     font-family: "Playfair Display", Georgia, serif;
@@ -64,7 +64,7 @@
 }
 
 .part-booking h1:nth-of-type(2) {
-    font-size: 28px;
+    font-size: 24px;
     color: var(--color-primary);
     padding: 0;
     margin: 0;
@@ -111,7 +111,7 @@
     padding: 10px 80px;
     border: none;
     background-color: hsl(25 35% 25%);
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 5px;
     box-shadow: 0px 0px 6px 0px gray;
     color: white;
@@ -130,7 +130,9 @@
 .close-services{
     display: none;
 }
-
+.add-btn-slider{
+    display: none;
+}
 /* responsive */
 @media (max-width: 768px) {
 

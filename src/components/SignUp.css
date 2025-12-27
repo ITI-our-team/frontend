@@ -143,8 +143,12 @@
 /* responsive */
 @media (max-width: 768px) {
     .Signup-page {
-        padding: 65px 0;
+    padding: 65px 20px;
     }
+
+    .Signup-box >h1 {
+    font-size: 22px;
+}
     .profile-image-container.update-page{
         height: 110px;
     }

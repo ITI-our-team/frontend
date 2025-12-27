@@ -100,6 +100,7 @@
         width: 85px;
         font-size: 14px;
         padding: 5px;
+        margin: 0;
     }
 
     .back-btn:hover {
