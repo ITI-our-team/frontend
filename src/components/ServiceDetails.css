@@ -123,7 +123,7 @@
 .details-hero.no-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "images" "details";
+    grid-template-areas: "images details";
     gap: 20px;
 }
 
@@ -293,6 +293,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 0;
+        grid-template-areas: "images" "details";
     }
     .extra-images {
         grid-template-columns: repeat(2, 1fr);
@@ -303,7 +304,7 @@
     } */
 
     .details-hero .card-img{
-        height: 200px;
+        height: 150px;
     }
 
 }

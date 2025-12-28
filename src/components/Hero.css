@@ -27,7 +27,7 @@
 }
 
 .hero-content h2 {
-    font-size: var(--font-size-big-text);
+    font-size: 42px;
     margin-bottom: 1rem;
     text-shadow: -9px 5px 5px rgba(0, 0, 0, 0.5);
     color: var(--color-bg);
