@@ -342,3 +342,123 @@
     }
 
 } */
+ /* ===== Blackout Management Section ===== */
+.blackout-management {
+    background-color: var(--color-bg-local);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 10%); /* Matches your form shadow */
+    width: 70%; /* Matches .more-details width */
+    margin: 10px auto;
+}
+
+.blackout-management h3 {
+    font-size: 22px;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    font-family: serif;
+}
+
+.blackout-management .description-text {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.blackout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.blackout-form label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.blackout-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+}
+
+.blackout-form input:focus {
+    border-color: var(--color-btn);
+}
+
+.toggle-block-btn {
+    background-color: var(--color-btn);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-block-btn:hover {
+    background-color: var(--color-btn-hover);
+}
+
+/* Badges Styling */
+.blocked-dates-list h5 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.date-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.date-badge {
+    background-color: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-badge .delete-icon {
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.date-badge .delete-icon:hover {
+    transform: scale(1.2);
+}
+
+.no-dates {
+    font-size: 13px;
+    font-style: italic;
+    color: #999;
+}
+
+/* ===== Responsive for Blackout Section ===== */
+@media (max-width: 768px) {
+    .blackout-management {
+        width: 100%;
+        margin: 20px 0;
+        padding: 16px;
+    }
+    
+    .date-badge {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

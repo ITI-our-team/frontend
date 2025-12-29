@@ -5,7 +5,7 @@ import Form from "./Form";
 // import { useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
-
+import { FaCalendarTimes, FaTrashAlt } from "react-icons/fa";
 function ServiceDetails({ api_url }) {
     const { id } = useParams();
     const [service, setService] = useState(null);
@@ -14,8 +14,48 @@ function ServiceDetails({ api_url }) {
     const userToken = localStorage.getItem("userToken");
     const role = localStorage.getItem("role");
     const username = localStorage.getItem("username");
-
+    const [blackoutDate, setBlackoutDate] = useState("");
+    const [blackoutReason, setBlackoutReason] = useState("");
     const navigate = useNavigate();
+    const refreshService = async () => {
+        const res = await fetch(`${api_url}api/services/${id}/`);
+        if (res.ok) {
+            const data = await res.json();
+            setService(data);
+        }
+    };
+
+    const handleToggleBlackout = async (e) => {
+        e.preventDefault();
+        if (!blackoutDate) return toast.error("Please select a date");
+        const blackoutData = new FormData();
+        blackoutData.append("date", blackoutDate);
+        blackoutData.append("reason", blackoutReason);
+        console.log(blackoutData);
+        try {
+            const res = await fetch(`${api_url}api/services/${id}/toggle-blackout/`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${userToken}`
+                },
+                body: blackoutData
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                toast.success(data.message);
+                setBlackoutDate("");
+                setBlackoutReason("");
+                refreshService(); // Update the UI to show new unavailable dates
+            } else {
+                toast.error(data.error || "Failed to update blackout");
+                console.log(data);
+            }
+        } catch (err) {
+            toast.error("Connection error");
+            console.log(err);
+        }
+    };
     useEffect(() => {
         const getService = async () => {
             setIsLoading(true);
@@ -117,7 +157,7 @@ function ServiceDetails({ api_url }) {
                 <div className="container">
                     <h1>{service.name}</h1>
 
-                    <div className={`details-hero ${role === "customer" ? "with-form" : "no-form"}`}>
+                    <div className={`details-hero ${role != null ? "with-form" : "no-form"}`}>
 
                         <div className="details-hero-images">
                             <div className="img-details">
@@ -145,6 +185,59 @@ function ServiceDetails({ api_url }) {
                             {role === "customer" && (
                                 <div className="details-hero-form">
                                     <Form service={service} api_url={api_url} />
+                                </div>
+                            )}
+                            {role === "vendor" && username === service.vendor && (
+                                <div className="blackout-management">
+                                    <h3><i className="fa-solid fa-calendar-xmark"></i> Manage Unavailable Dates</h3>
+                                    <p className="description-text">Block dates for holidays, maintenance, or private events.</p>
+                                    
+                                    <form onSubmit={handleToggleBlackout} className="blackout-form">
+                                        <div className="two-inputs">
+                                            <div>
+                                                <label>Select Date</label>
+                                                <input 
+                                                    type="date" 
+                                                    value={blackoutDate}
+                                                    min={new Date().toISOString().split("T")[0]}
+                                                    onChange={(e) => setBlackoutDate(e.target.value)}
+                                                    required
+                                                />
+                                            </div>
+                                            <div>
+                                                <label>Reason (Optional)</label>
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="e.g. Maintenance"
+                                                    value={blackoutReason}
+                                                    onChange={(e) => setBlackoutReason(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+                                        <button type="submit" className="toggle-block-btn">Toggle Date Availability</button>
+                                    </form>
+
+                                    <div className="blocked-dates-list">
+                                        <h5>Currently Blocked:</h5>
+                                        <div className="date-badges">
+                                            {service.unavailable_dates && service.unavailable_dates.length > 0 ? (
+                                                service.unavailable_dates.map(date => (
+                                                    <div key={date} className="date-badge">
+                                                        <span>{date}</span>
+                                                        <i 
+                                                            className="fa-solid fa-circle-xmark delete-icon" 
+                                                            onClick={() => {
+                                                                setBlackoutDate(date);
+                                                                setTimeout(() => handleToggleBlackout({preventDefault: () => {}}), 10);
+                                                            }}
+                                                        ></i>
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <p className="no-dates">No dates manually blocked.</p>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
