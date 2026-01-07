@@ -79,7 +79,7 @@ function Navbar({ api_url }) {
         if (location.pathname === "/") {
 
             const handleScroll = () => {
-                if (window.scrollY >= window.innerHeight) {
+                if (window.scrollY >= 100) {
                     nav.classList.add('scrolled')
                 } else {
                     nav.classList.remove('scrolled')
