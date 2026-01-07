@@ -14,6 +14,9 @@ function ServiceDetails({ api_url }) {
     const userToken = localStorage.getItem("userToken");
     const role = localStorage.getItem("role");
     const username = localStorage.getItem("username");
+    const showForm =
+    role === "customer" ||
+    (role === "vendor" && username === service?.vendor);
     const [blackoutDate, setBlackoutDate] = useState("");
     const [blackoutReason, setBlackoutReason] = useState("");
     const navigate = useNavigate();
@@ -157,7 +160,8 @@ function ServiceDetails({ api_url }) {
                 <div className="container">
                     <h1>{service.name}</h1>
 
-                    <div className={`details-hero ${role != null ? "with-form" : "no-form"}`}>
+                    {/* <div className={`details-hero ${role != null ? "with-form" : "no-form"}`}> */}
+                    <div className={`details-hero ${showForm ? "with-form" : "no-form"}`}>
 
                         <div className="details-hero-images">
                             <div className="img-details">

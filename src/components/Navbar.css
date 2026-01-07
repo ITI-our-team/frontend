@@ -39,7 +39,6 @@ nav {
 .logo p {
     margin: auto;
     padding: 0 35px 0 0;
-    font-family: initial;
     font-size: 26px;
     font-weight: bold;
     color: antiquewhite;
@@ -53,18 +52,17 @@ nav {
 .menu {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 20px;
 }
 
 
 .menu button {
     position: relative;
     border: none;
-    margin-right: 35px;
+    /* margin-right: 35px; */
     background-color: transparent;
     color: #ebdec5;
     font-size: var(--font-size-btns);
-    font-family: serif;
     padding: 8px 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -113,7 +111,6 @@ nav {
 
 .sign-in {
     font-size: 16px;
-    font-family: revert-layer;
     padding: 6px 12px;
     border-radius: 4px;
     background: var(--color-btn);

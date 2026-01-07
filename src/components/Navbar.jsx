@@ -79,7 +79,7 @@ function Navbar({ api_url }) {
         if (location.pathname === "/") {
 
             const handleScroll = () => {
-                if (window.scrollY >= 100) {
+                if (window.scrollY >= 120) {
                     nav.classList.add('scrolled')
                 } else {
                     nav.classList.remove('scrolled')
@@ -226,7 +226,7 @@ function Navbar({ api_url }) {
                     <hr />
                     <Link to="/" onClick={() => setOpen(false)}>Home</Link>
                     <Link to="/services" onClick={() => setOpen(false)}>Venues & Vendors</Link>
-                    <Link to="/" onClick={() => setOpen(false)}>Projects</Link>
+                    <Link to="/projects" onClick={() => setOpen(false)}>Blogs</Link>
 
                     {username ? (
                         <>

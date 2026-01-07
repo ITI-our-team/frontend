@@ -5,7 +5,8 @@
 }
 
 .header-services h1 {
-    font-family: serif;
+    /* font-family: serif; */
+    font-family:  "Playfair Display", Georgia, serif;
     text-align: center;
     font-size: var(--font-size-big-text);
     font-weight: bold;
@@ -33,7 +34,8 @@
 }
 
 .header h2 {
-    font-family: serif;
+    /* font-family: serif; */
+    font-family:  "Playfair Display", Georgia, serif;
     font-weight: 400;
     color: var(--color-primary);
 }
