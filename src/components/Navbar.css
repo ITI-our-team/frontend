@@ -99,12 +99,8 @@ nav {
 
 .nav-section.scrolled .menu button {
     color: var(--color-text-navbar);
-    font-weight: 600;
 }
-.nav-section.scrolled .menu button {
-    color: var(--color-text-navbar);
-    font-weight: 600;
-}
+
 .nav-section.scrolled .menu button:hover {
     background-color: #ded0bb69;
 }
